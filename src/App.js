@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.scss';
-import {createStore} from 'redux';
+
+//Redux
+import {incrementAction} from './redux/actions/actions';
+import {store} from './redux/store';
 import {connect} from 'react-redux';
 
 class App extends Component {
@@ -14,27 +17,11 @@ class App extends Component {
   }
 }
 
-const calcReducer = (state = 0, action) => {
-  switch (action.type) {
-      case "INCREMENT":
-          return state + action.incrementBy;
-      default:
-          return state;
-  }
-}
-
-export const store = createStore(calcReducer);
-
 console.log(store.getState());
 
 store.subscribe(() => console.log(store.getState()))
-
-const incrementAction = (incrementBy = 1) => ({
-  type: 'INCREMENT',
-  incrementBy
-});
-
 store.dispatch(incrementAction(5));
+
 
 const mapStateToProps = (state) => ({
   state
@@ -44,11 +31,9 @@ const reduxedApp = connect(mapStateToProps)(App);
 
 export default reduxedApp;
 
-// 1. ustawic sklep 
-// (ustawic reducer, 
-//   podpiac jedna akcje, 
-//   to wszystko pod sklep podpiac, 
-//   wyslac kilka akcji z programu)
+// 1. 
+// Set store: reducer, action, define store
+// Dispatch a test action
 
 // 2. 
 // Connect redux state with App component

@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 //Redux
-import {store} from './App';
+import {store} from './redux/store';
 import {Provider} from 'react-redux';
 
 const jsx = (
