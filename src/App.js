@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './App.scss';
 import {createStore} from 'redux';
+import {connect} from 'react-redux';
 
 class App extends Component {
   render() {
     return (
       <div>
+        {console.log(this.props)}
         Calculator
       </div>
     );
@@ -21,7 +23,7 @@ const calcReducer = (state = 0, action) => {
   }
 }
 
-const store = createStore(calcReducer);
+export const store = createStore(calcReducer);
 
 console.log(store.getState());
 
@@ -34,10 +36,23 @@ const incrementAction = (incrementBy = 1) => ({
 
 store.dispatch(incrementAction(5));
 
-export default App;
+const mapStateToProps = (state) => ({
+  state
+})
+
+const reduxedApp = connect(mapStateToProps)(App);
+
+export default reduxedApp;
 
 // 1. ustawic sklep 
 // (ustawic reducer, 
 //   podpiac jedna akcje, 
 //   to wszystko pod sklep podpiac, 
 //   wyslac kilka akcji z programu)
+
+// 2. 
+// Connect redux state with App component
+// Send App to GithubPages
+// Organise file structure
+// Show state on componenet and get button for calculations
+
