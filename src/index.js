@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './App';
+
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter as Router, Route} from "react-router-dom";
+
+//Components
+import ReduxedApp from './App';
+import Dashboard from './components/Dashboard';
 
 //Redux
 import {store} from './redux/store';
@@ -10,7 +15,10 @@ import {Provider} from 'react-redux';
 
 const jsx = (
     <Provider store={store}>
-        <App/>
+        <Router>
+            <Route exact path='/' component={Dashboard}/>
+            <Route path='/counter' component={ReduxedApp}/>
+        </Router>
     </Provider>
 )
 

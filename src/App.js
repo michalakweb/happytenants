@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 //CSS
 import 'bootstrap/dist/css/bootstrap.css';
@@ -32,6 +33,10 @@ class App extends Component {
           <Button onClick={this.handleAdd}>+</Button>
           <Button onClick={this.handleMinus}>-</Button>
           <Button onClick={this.handleReset}>Reset</Button>
+
+          <p>Info from Firebase:</p>
+
+          <Link to='/'>Go to dashboard</Link>
         </Container>
       </div>
     );
