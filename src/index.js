@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 
+//React Router
 import * as serviceWorker from './serviceWorker';
 import { Router, Route, Switch} from "react-router-dom";
-import createHashHistory from 'history/createHashHistory';
+import { createHashHistory } from 'history'
     
 //Components
 import ReduxedApp from './App';
