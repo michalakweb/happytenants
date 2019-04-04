@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router, Route} from "react-router-dom";
-
+import { Router, Route, Switch} from "react-router-dom";
+import createHashHistory from 'history/createHashHistory';
+    
 //Components
 import ReduxedApp from './App';
 import Dashboard from './components/Dashboard';
@@ -13,11 +14,16 @@ import Dashboard from './components/Dashboard';
 import {store} from './redux/store';
 import {Provider} from 'react-redux';
 
+const hashHistory = createHashHistory({ basename: process.env.PUBLIC_URL });
+
 const jsx = (
     <Provider store={store}>
-        <Router>
-            <Route exact path='/' component={Dashboard}/>
-            <Route path='/counter' component={ReduxedApp}/>
+        <Router history={hashHistory}>
+            <Switch>
+                <Route exact path='/' component={Dashboard}/>
+                <Route path='/counter' component={ReduxedApp}/>
+                <Route component={() => (<div>404 Not found 1</div>)} />
+            </Switch>
         </Router>
     </Provider>
 )
