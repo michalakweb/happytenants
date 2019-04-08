@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import BuyingListItem from './BuyingListItem';
 
 //Firebase
 import {database} from '../firebase/firebase';
 
 //CSS
 import 'bootstrap/dist/css/bootstrap.css';
-import {Container, Button} from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 
 //Redux
-import {incrementAction, decrementAction, resetAction} from '../redux/actions/actions';
+// import {incrementAction, decrementAction, resetAction} from '../redux/actions/actions';
 import {store} from '../redux/store';
 import {connect} from 'react-redux';
 
@@ -29,27 +30,20 @@ class App extends Component {
     })
   }
 
-  handleAdd = () => {
-    this.props.dispatch(incrementAction());
-  }
-
-  handleMinus = () => {
-    this.props.dispatch(decrementAction());
-  }
-
-  handleReset = () => {
-    this.props.dispatch(resetAction());
-  }
+  // handleAdd = () => {
+  //   this.props.dispatch(incrementAction());
+  // }
 
   render() {
     return (
       <div>
         <Container>
-          <h1>Counter</h1>
-          <p>Current Count: {this.props.state}</p>
-          <Button onClick={this.handleAdd}>+</Button>
-          <Button onClick={this.handleMinus}>-</Button>
-          <Button onClick={this.handleReset}>Reset</Button>
+          <h1>Buying List</h1>
+          {
+            !this.props.state.length ? <p>Nic nie ma na liście</p> :
+            this.props.state.map((item, index) => <BuyingListItem key={index} item={item}/>)
+          }
+          
 
           <p>Info from Firebase: {this.state.name}</p>
 

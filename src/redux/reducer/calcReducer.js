@@ -1,5 +1,6 @@
+const buyingListState = ['jeden', 'dwa'];
 
-const calcReducer = (state = 0, action) => {
+const buyingListReducer = (state = buyingListState, action) => {
     switch (action.type) {
         case "INCREMENT":
             return state + action.incrementBy;
@@ -12,4 +13,4 @@ const calcReducer = (state = 0, action) => {
     }
 }
 
-export default calcReducer;
+export default buyingListReducer;

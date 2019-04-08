@@ -1,13 +1,9 @@
-export const incrementAction = (incrementBy = 1) => ({
-    type: 'INCREMENT',
-    incrementBy
+export const addItemAction = (itemVal) => ({
+    type: 'ADD_ITEM',
+    itemVal
 });
 
-export const decrementAction = (decrementBy = 1) => ({
-    type: 'DECREMENT',
-    decrementBy
-});
-
-export const resetAction = () => ({
-    type: 'RESET'
+export const removeItemAction = (itemVal) => ({
+    type: 'REMOVE_ITEM',
+    itemVal
 });
