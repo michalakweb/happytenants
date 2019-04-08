@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/github/io/happytenants/precache-manifest.f31e2ee90d5aa2d7aea5c1b7a9a4cbd8.js"
+  "/github.io/happytenants/precache-manifest.3008d7d694daecbff692854aaecce645.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/github/io/happytenants/index.html", {
+workbox.routing.registerNavigationRoute("/github.io/happytenants/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });

@@ -1,15 +1,15 @@
 {
-  "main.css": "/github/io/happytenants/static/css/main.b56d6581.chunk.css",
-  "main.js": "/github/io/happytenants/static/js/main.0548c15c.chunk.js",
-  "main.js.map": "/github/io/happytenants/static/js/main.0548c15c.chunk.js.map",
-  "runtime~main.js": "/github/io/happytenants/static/js/runtime~main.2d9c0099.js",
-  "runtime~main.js.map": "/github/io/happytenants/static/js/runtime~main.2d9c0099.js.map",
-  "static/css/2.4397b3cc.chunk.css": "/github/io/happytenants/static/css/2.4397b3cc.chunk.css",
-  "static/js/2.42d77665.chunk.js": "/github/io/happytenants/static/js/2.42d77665.chunk.js",
-  "static/js/2.42d77665.chunk.js.map": "/github/io/happytenants/static/js/2.42d77665.chunk.js.map",
-  "index.html": "/github/io/happytenants/index.html",
-  "precache-manifest.f31e2ee90d5aa2d7aea5c1b7a9a4cbd8.js": "/github/io/happytenants/precache-manifest.f31e2ee90d5aa2d7aea5c1b7a9a4cbd8.js",
-  "service-worker.js": "/github/io/happytenants/service-worker.js",
-  "static/css/2.4397b3cc.chunk.css.map": "/github/io/happytenants/static/css/2.4397b3cc.chunk.css.map",
-  "static/css/main.b56d6581.chunk.css.map": "/github/io/happytenants/static/css/main.b56d6581.chunk.css.map"
+  "main.css": "/github.io/happytenants/static/css/main.b56d6581.chunk.css",
+  "main.js": "/github.io/happytenants/static/js/main.716304f0.chunk.js",
+  "main.js.map": "/github.io/happytenants/static/js/main.716304f0.chunk.js.map",
+  "runtime~main.js": "/github.io/happytenants/static/js/runtime~main.8fc8ff06.js",
+  "runtime~main.js.map": "/github.io/happytenants/static/js/runtime~main.8fc8ff06.js.map",
+  "static/css/2.4397b3cc.chunk.css": "/github.io/happytenants/static/css/2.4397b3cc.chunk.css",
+  "static/js/2.62c6d98d.chunk.js": "/github.io/happytenants/static/js/2.62c6d98d.chunk.js",
+  "static/js/2.62c6d98d.chunk.js.map": "/github.io/happytenants/static/js/2.62c6d98d.chunk.js.map",
+  "index.html": "/github.io/happytenants/index.html",
+  "precache-manifest.3008d7d694daecbff692854aaecce645.js": "/github.io/happytenants/precache-manifest.3008d7d694daecbff692854aaecce645.js",
+  "service-worker.js": "/github.io/happytenants/service-worker.js",
+  "static/css/2.4397b3cc.chunk.css.map": "/github.io/happytenants/static/css/2.4397b3cc.chunk.css.map",
+  "static/css/main.b56d6581.chunk.css.map": "/github.io/happytenants/static/css/main.b56d6581.chunk.css.map"
 }
