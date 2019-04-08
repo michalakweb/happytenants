@@ -1,4 +1,4 @@
 import {createStore} from 'redux';
-import calcReducer from './reducer/calcReducer';
+import buyingListReducer from './reducer/buyingListReducer';
 
-export const store = createStore(calcReducer);
+export const store = createStore(buyingListReducer);
