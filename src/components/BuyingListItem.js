@@ -1,12 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {removeItemAction} from '../redux/actions/actions';
+import {startRemoveItemAction} from '../redux/actions/actions';
 
 const BuyingListItem = (props) => (
     <div>
-        <p>{props.item}</p>
+        <p>{props.item.description}</p>
         <button onClick={() => {
-            props.dispatch(removeItemAction(props.item));
+            props.dispatch(startRemoveItemAction({id : props.item.id}));
         }}>delete option</button>
     </div>
 );

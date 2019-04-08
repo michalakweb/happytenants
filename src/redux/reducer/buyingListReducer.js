@@ -5,7 +5,7 @@ const buyingListReducer = (state = buyingListState, action) => {
         case "ADD_ITEM":
             return [...state, action.item]
         case "REMOVE_ITEM":
-            return state.filter(el => el !== action.itemVal)
+            return state.filter(el => el.id !== action.id)
         default:
             return state;
     }
