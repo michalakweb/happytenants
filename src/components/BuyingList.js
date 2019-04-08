@@ -15,7 +15,6 @@ import {store} from '../redux/store';
 import {connect} from 'react-redux';
 
 
-
 class BuyingList extends Component {
   state = {
     name: 'Fetching from firebase...',
@@ -23,14 +22,14 @@ class BuyingList extends Component {
   }
 
   componentDidMount = () => {
-    this.props.dispatch(startSetListAction());
-
-    database.ref().on('value', (snapshot) => {
-      const val = snapshot.val();
-      this.setState(() => ({
-        name: val.name
-      }))
-    })
+    const connectedRef = database.ref(".info/connected");
+    connectedRef.on("value", (snap) => {
+      if (snap.val() === true) {
+        this.props.dispatch(startSetListAction());
+      } else {
+        console.log('not connected')
+      }
+    });
   }
 
   componentDidUpdate = () => {
