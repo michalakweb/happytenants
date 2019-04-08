@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import ReduxedBuyingListItem from './BuyingListItem';
 
 //Firebase
-import {database} from '../firebase/firebase';
+import {database, GoogleAuthProvider, firebase} from '../firebase/firebase';
+import 'firebase/auth';
 
 //CSS
 import 'bootstrap/dist/css/bootstrap.css';
@@ -66,6 +67,10 @@ class BuyingList extends Component {
 
       this.props.dispatch(startAddItemAction(todoItem));
     }
+  };
+
+  handleLogin = () => {
+    firebase.auth().signInWithPopup(GoogleAuthProvider);
   }
 
   render() {
@@ -86,6 +91,7 @@ class BuyingList extends Component {
           {this.state.error.length !== 0 && <p className='mt-3 mb-2'>{this.state.error}</p>}
 
           <Link to='/'>Go to dashboard</Link>
+          <button onClick={this.handleLogin}>Login</button>
         </Container>
       </div>
     );
