@@ -1,15 +1,15 @@
 {
-  "main.css": "/github.io/happytenants/static/css/main.b56d6581.chunk.css",
-  "main.js": "/github.io/happytenants/static/js/main.716304f0.chunk.js",
-  "main.js.map": "/github.io/happytenants/static/js/main.716304f0.chunk.js.map",
-  "runtime~main.js": "/github.io/happytenants/static/js/runtime~main.8fc8ff06.js",
-  "runtime~main.js.map": "/github.io/happytenants/static/js/runtime~main.8fc8ff06.js.map",
-  "static/css/2.4397b3cc.chunk.css": "/github.io/happytenants/static/css/2.4397b3cc.chunk.css",
-  "static/js/2.62c6d98d.chunk.js": "/github.io/happytenants/static/js/2.62c6d98d.chunk.js",
-  "static/js/2.62c6d98d.chunk.js.map": "/github.io/happytenants/static/js/2.62c6d98d.chunk.js.map",
-  "index.html": "/github.io/happytenants/index.html",
-  "precache-manifest.3008d7d694daecbff692854aaecce645.js": "/github.io/happytenants/precache-manifest.3008d7d694daecbff692854aaecce645.js",
-  "service-worker.js": "/github.io/happytenants/service-worker.js",
-  "static/css/2.4397b3cc.chunk.css.map": "/github.io/happytenants/static/css/2.4397b3cc.chunk.css.map",
-  "static/css/main.b56d6581.chunk.css.map": "/github.io/happytenants/static/css/main.b56d6581.chunk.css.map"
+  "main.css": "/happytenants/static/css/main.b56d6581.chunk.css",
+  "main.js": "/happytenants/static/js/main.47952524.chunk.js",
+  "main.js.map": "/happytenants/static/js/main.47952524.chunk.js.map",
+  "runtime~main.js": "/happytenants/static/js/runtime~main.3c5682d9.js",
+  "runtime~main.js.map": "/happytenants/static/js/runtime~main.3c5682d9.js.map",
+  "static/css/2.4397b3cc.chunk.css": "/happytenants/static/css/2.4397b3cc.chunk.css",
+  "static/js/2.2e24090b.chunk.js": "/happytenants/static/js/2.2e24090b.chunk.js",
+  "static/js/2.2e24090b.chunk.js.map": "/happytenants/static/js/2.2e24090b.chunk.js.map",
+  "index.html": "/happytenants/index.html",
+  "precache-manifest.a3869b13c0f527dfc3d806b983be8ad8.js": "/happytenants/precache-manifest.a3869b13c0f527dfc3d806b983be8ad8.js",
+  "service-worker.js": "/happytenants/service-worker.js",
+  "static/css/2.4397b3cc.chunk.css.map": "/happytenants/static/css/2.4397b3cc.chunk.css.map",
+  "static/css/main.b56d6581.chunk.css.map": "/happytenants/static/css/main.b56d6581.chunk.css.map"
 }
