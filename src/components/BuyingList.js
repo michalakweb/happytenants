@@ -30,8 +30,10 @@ class App extends Component {
     })
   }
 
-  handleAdd = () => {
-    this.props.dispatch(addItemAction('trzy'))
+  handleAdd = (e) => {
+    e.preventDefault();
+    let todoItem = e.target.elements.todoItem.value;
+    this.props.dispatch(addItemAction(todoItem));
   }
 
   render() {
@@ -43,7 +45,11 @@ class App extends Component {
             !this.props.state.length ? <p>Nic nie ma na liście</p> :
             this.props.state.map((item, index) => <BuyingListItem key={index} item={item}/>)
           }
-          <button onClick={this.handleAdd}>Click to add</button>
+
+          <form onSubmit={this.handleAdd}>
+            <input type="text" name='todoItem' placeholder="Type your option here"></input>
+            <button type='submit'>Add something</button>
+          </form>
 
           <p>Info from Firebase: {this.state.name}</p>
 
