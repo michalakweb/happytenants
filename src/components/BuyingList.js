@@ -17,7 +17,6 @@ import {connect} from 'react-redux';
 
 class BuyingList extends Component {
   state = {
-    name: 'Fetching from firebase...',
     error: ''
   }
 
@@ -85,8 +84,6 @@ class BuyingList extends Component {
           </form>
           {/* Error handling */}
           {this.state.error.length !== 0 && <p className='mt-3 mb-2'>{this.state.error}</p>}
-
-          <p>Info from Firebase: {this.state.name}</p>
 
           <Link to='/'>Go to dashboard</Link>
         </Container>
