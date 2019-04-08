@@ -75,7 +75,7 @@ class BuyingList extends Component {
           <h1>Buying List</h1>
           {
             !this.props.state.length ? <p>Nic nie ma na liście</p> :
-            this.props.state.map((item, index) => <ReduxedBuyingListItem key={index} item={item}/>)
+            this.props.state.map(item => <ReduxedBuyingListItem key={item.id} item={item.description}/>)
           }
 
           <form onSubmit={this.handleAdd}>
