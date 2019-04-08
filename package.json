@@ -1,8 +1,7 @@
 {
-  "name": "calculator",
+  "name": "happy-tenants",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://michalakweb.github.io/calculator/",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "firebase": "^5.9.2",

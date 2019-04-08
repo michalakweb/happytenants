@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const Dashboard = () => (
     <div>
-        <h1>Welcome to the dashboard</h1>
-        <Link to='/counter'>Go to counter</Link>
+        <h1>Welcome to the chores</h1>
+        <Link to='/buyingList'>Go to buying list</Link>
     </div>
 );
 

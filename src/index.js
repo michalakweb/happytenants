@@ -8,8 +8,8 @@ import { Router, Route, Switch} from "react-router-dom";
 import { createHashHistory } from 'history'
     
 //Components
-import ReduxedApp from './App';
-import Dashboard from './components/Dashboard';
+import ReduxedBuyingList from './components/BuyingList';
+import Chores from './components/Chores';
 
 //Redux
 import {store} from './redux/store';
@@ -21,8 +21,8 @@ const jsx = (
     <Provider store={store}>
         <Router history={hashHistory}>
             <Switch>
-                <Route exact path='/' component={Dashboard}/>
-                <Route path='/counter' component={ReduxedApp}/>
+                <Route exact path='/' component={Chores}/>
+                <Route path='/buyingList' component={ReduxedBuyingList}/>
                 <Route component={() => (<div>404 Not found 1</div>)} />
             </Switch>
         </Router>
