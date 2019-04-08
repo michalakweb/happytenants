@@ -34,3 +34,25 @@ export const startRemoveItemAction = ({id}) => {
         });
     };
 };
+
+const setListAction = (list) => ({
+    type: 'SET_LIST',
+    list
+});
+
+export const startSetListAction = () => {
+    return (dispatch) => {
+        return database.ref(`todoList`).once('value').then(snapshot => {
+            const listItems = [];
+
+            snapshot.forEach(childSnapshot => {
+                listItems.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                });
+            });
+
+            dispatch(setListAction(listItems));
+        });
+    };
+};

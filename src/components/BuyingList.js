@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {Container} from 'react-bootstrap';
 
 //Redux
-import {startAddItemAction} from '../redux/actions/actions';
+import {startAddItemAction, startSetListAction} from '../redux/actions/actions';
 import {store} from '../redux/store';
 import {connect} from 'react-redux';
 
@@ -23,6 +23,8 @@ class BuyingList extends Component {
   }
 
   componentDidMount = () => {
+    this.props.dispatch(startSetListAction());
+
     database.ref().on('value', (snapshot) => {
       const val = snapshot.val();
       this.setState(() => ({
