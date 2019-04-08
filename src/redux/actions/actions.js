@@ -5,12 +5,9 @@ export const addItemAction = (item) => ({
     item
 });
 
-export const startAddItemAction = (itemData = {}) => {
+export const startAddItemAction = (itemData) => {
     return (dispatch) => {
-        const {
-            description = itemData,
-          } = itemData;
-          const item = { description };
+        const item = { description: itemData };
 
         return database.ref(`todoList`).push(item)
         .then((ref) => {
@@ -23,12 +20,12 @@ export const startAddItemAction = (itemData = {}) => {
 };
   
 
-const removeItemAction = ({id} = {}) => ({
+const removeItemAction = ({id}) => ({
     type: 'REMOVE_ITEM',
     id
 });
 
-export const startRemoveItemAction = ({id} = {}) => {
+export const startRemoveItemAction = ({id}) => {
     return (dispatch) => {
         
         return database.ref(`todoList/${id}`).remove()
