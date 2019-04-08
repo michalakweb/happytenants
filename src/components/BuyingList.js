@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {Container} from 'react-bootstrap';
 
 //Redux
-// import {incrementAction, decrementAction, resetAction} from '../redux/actions/actions';
+import {addItemAction} from '../redux/actions/actions';
 import {store} from '../redux/store';
 import {connect} from 'react-redux';
 
@@ -30,9 +30,9 @@ class App extends Component {
     })
   }
 
-  // handleAdd = () => {
-  //   this.props.dispatch(incrementAction());
-  // }
+  handleAdd = () => {
+    this.props.dispatch(addItemAction('trzy'))
+  }
 
   render() {
     return (
@@ -43,7 +43,7 @@ class App extends Component {
             !this.props.state.length ? <p>Nic nie ma na liście</p> :
             this.props.state.map((item, index) => <BuyingListItem key={index} item={item}/>)
           }
-          
+          <button onClick={this.handleAdd}>Click to add</button>
 
           <p>Info from Firebase: {this.state.name}</p>
 
