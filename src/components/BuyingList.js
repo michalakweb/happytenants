@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import BuyingListItem from './BuyingListItem';
+import ReduxedBuyingListItem from './BuyingListItem';
 
 //Firebase
 import {database} from '../firebase/firebase';
@@ -43,7 +43,7 @@ class App extends Component {
           <h1>Buying List</h1>
           {
             !this.props.state.length ? <p>Nic nie ma na liście</p> :
-            this.props.state.map((item, index) => <BuyingListItem key={index} item={item}/>)
+            this.props.state.map((item, index) => <ReduxedBuyingListItem key={index} item={item}/>)
           }
 
           <form onSubmit={this.handleAdd}>
