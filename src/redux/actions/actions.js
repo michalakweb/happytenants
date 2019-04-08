@@ -7,14 +7,12 @@ export const addItemAction = (itemVal) => ({
 
 export const startAddItemAction = (itemVal = []) => {
     return (dispatch) => {
-        return database.red(`todoList`).push(itemVal);
-    }
-}
-
-// export const addExpense = (expense) => ({
-//     type: 'ADD_EXPENSE',
-//     expense
-//   });
+        return database.ref(`todoList`).push(itemVal)
+        .then(() => {
+            dispatch(addItemAction(itemVal))
+        });
+    };
+};
   
 //   export const startAddExpense = (expenseData = {}) => {
 //     return (dispatch, getState) => {

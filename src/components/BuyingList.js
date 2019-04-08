@@ -10,13 +10,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {Container} from 'react-bootstrap';
 
 //Redux
-import {addItemAction} from '../redux/actions/actions';
+import {startAddItemAction} from '../redux/actions/actions';
 import {store} from '../redux/store';
 import {connect} from 'react-redux';
 
 
 
-class App extends Component {
+class BuyingList extends Component {
   state = {
     name: 'Fetching from firebase...',
     error: ''
@@ -63,7 +63,8 @@ class App extends Component {
       this.setState(() => ({
         error: ''
       }));
-      this.props.dispatch(addItemAction(todoItem));
+
+      this.props.dispatch(startAddItemAction(todoItem));
     }
   }
 
@@ -99,7 +100,7 @@ const mapStateToProps = (state) => ({
   state
 })
 
-const reduxedBuyingList = connect(mapStateToProps)(App);
+const reduxedBuyingList = connect(mapStateToProps)(BuyingList);
 
 export default reduxedBuyingList;
 
