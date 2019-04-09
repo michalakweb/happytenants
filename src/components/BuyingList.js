@@ -91,7 +91,7 @@ class BuyingList extends Component {
                     <Form onSubmit={this.handleAdd}>
                       <Row>
                         <Col className='my-2'>
-                          <Form.Control type="text" name='todoItem' placeholder="Type your option here" />
+                          <Form.Control autoComplete='off' type="text" name='todoItem' placeholder="Type your option here" />
                         </Col>
                       </Row> 
                       <Row>
