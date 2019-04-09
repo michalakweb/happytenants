@@ -31,11 +31,11 @@ class Dashboard extends React.Component {
                 <Container className='container container--main text-center'>
                     <Row>
                         <Col className='px-0 mb-4'>
-                            <h1 className="display-4 py-4 header">This weeks's cleaning chores:</h1>
+                            <h1 className="display-4 py-4 header">This weeks's cleaning:</h1>
                         </Col>
                     </Row>
                     <Container className='container--list'>
-                        <Row className='py-3'>
+                        <Row className='py-5'>
                             <Col xs={5}>
                                 <i className="fas fa-utensils fa-3x"></i>
                                 
@@ -49,7 +49,7 @@ class Dashboard extends React.Component {
                                 </p>
                             </Col>
                         </Row>
-                        <Row className='py-3'>
+                        <Row className='py-5'>
                             <Col xs={5} className=''>
                                 <i className="fas fa-bath fa-2x px-2"></i>
                                 <i className="fas fa-broom fa-2x px-2"></i>

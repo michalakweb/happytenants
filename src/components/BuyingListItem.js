@@ -1,13 +1,19 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {startRemoveItemAction} from '../redux/actions/actions';
+import {Button, Row, Col} from 'react-bootstrap';
 
 const BuyingListItem = (props) => (
     <div>
-        <p>{props.item.description}</p>
-        <button onClick={() => {
-            props.dispatch(startRemoveItemAction({id : props.item.id}));
-        }}>delete option</button>
+        <Row className='py-3 pl-2'>
+            <Col xs={8} lg={10}><p className='lead optionText'>{props.item.description}</p></Col>
+
+            <Col xs={4} lg={2} className='text-right'>
+                <Button variant="outline-primary" className='button--deleteOption' onClick={() => {
+                    props.dispatch(startRemoveItemAction({id : props.item.id}));
+                }}>Delete</Button>
+            </Col>
+        </Row>
     </div>
 );
 
