@@ -120,6 +120,7 @@ function checkValidServiceWorker(swUrl, config) {
       }
     })
     .catch(() => {
+      localStorage.setItem('isOffline', 'true')
       console.log(
         'No internet connection found. App is running in offline mode.'
       );
