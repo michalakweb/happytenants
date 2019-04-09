@@ -1,0 +1,47 @@
+.container {
+    background-color: rgb(192, 185, 177);
+}
+
+.container--main {
+    height: 100vh;
+    max-width: 700px;
+}
+
+.container--list {
+    background-color: white;
+    border-radius: 6px;
+}
+
+.header {
+    background-color: blueviolet;
+    color: white;
+    font-size: 2.5rem;
+}
+
+.fas {
+    color: blueviolet;
+}
+
+.p--nav {
+    color: blueviolet;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.endRow {
+    background-color: rgb(248, 248, 248);
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.vl {
+    border-left: 2px solid rgba(0, 0, 0, 0.123);
+    position: absolute;
+    height: 60px;
+    left: 50%;
+    margin-left: -3px;
+    top: 0;
+  }
