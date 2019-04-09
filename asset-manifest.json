@@ -1,15 +1,15 @@
 {
-  "main.css": "/happytenants/static/css/main.eadbf786.chunk.css",
-  "main.js": "/happytenants/static/js/main.052141fa.chunk.js",
-  "main.js.map": "/happytenants/static/js/main.052141fa.chunk.js.map",
-  "runtime~main.js": "/happytenants/static/js/runtime~main.3c5682d9.js",
-  "runtime~main.js.map": "/happytenants/static/js/runtime~main.3c5682d9.js.map",
-  "static/css/2.4397b3cc.chunk.css": "/happytenants/static/css/2.4397b3cc.chunk.css",
-  "static/js/2.b1623724.chunk.js": "/happytenants/static/js/2.b1623724.chunk.js",
-  "static/js/2.b1623724.chunk.js.map": "/happytenants/static/js/2.b1623724.chunk.js.map",
-  "index.html": "/happytenants/index.html",
-  "precache-manifest.ead3ebfdd63cc00c8d4148506239d045.js": "/happytenants/precache-manifest.ead3ebfdd63cc00c8d4148506239d045.js",
-  "service-worker.js": "/happytenants/service-worker.js",
-  "static/css/2.4397b3cc.chunk.css.map": "/happytenants/static/css/2.4397b3cc.chunk.css.map",
-  "static/css/main.eadbf786.chunk.css.map": "/happytenants/static/css/main.eadbf786.chunk.css.map"
+  "main.css": "./static/css/main.eadbf786.chunk.css",
+  "main.js": "./static/js/main.7750f977.chunk.js",
+  "main.js.map": "./static/js/main.7750f977.chunk.js.map",
+  "runtime~main.js": "./static/js/runtime~main.2c977d9b.js",
+  "runtime~main.js.map": "./static/js/runtime~main.2c977d9b.js.map",
+  "static/css/2.4397b3cc.chunk.css": "./static/css/2.4397b3cc.chunk.css",
+  "static/js/2.d2850c82.chunk.js": "./static/js/2.d2850c82.chunk.js",
+  "static/js/2.d2850c82.chunk.js.map": "./static/js/2.d2850c82.chunk.js.map",
+  "index.html": "./index.html",
+  "precache-manifest.80ac988b8aedf8e14ba44762e9374379.js": "./precache-manifest.80ac988b8aedf8e14ba44762e9374379.js",
+  "service-worker.js": "./service-worker.js",
+  "static/css/2.4397b3cc.chunk.css.map": "./static/css/2.4397b3cc.chunk.css.map",
+  "static/css/main.eadbf786.chunk.css.map": "./static/css/main.eadbf786.chunk.css.map"
 }
