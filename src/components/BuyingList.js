@@ -23,10 +23,10 @@ class BuyingList extends Component {
   }
 
   componentDidMount = () => {
-    // After the component mounts it checks if it's the first time the app runs, by
-    // checking if TODO list items have been set in LocalStorage previously.
-    // If so it will get them and afterwards connects with firebase to update the redux store and
-    // show the latest state.
+    // After the component mounts it 
+    // checks if TODO list items have been set in LocalStorage previously.
+    // If so, then it will get and show them and afterwards connects with firebase to 
+    // update the redux store and show the latest state.
 
     const myListJSON = localStorage.getItem('listItems');
     if(!!myListJSON) {
@@ -53,8 +53,8 @@ class BuyingList extends Component {
   }
 
   componentDidUpdate = () => {
-    // Error messages disappear after three seconds
-    if(this.state.error.length !== 0) {
+    // Error messages disappear after three seconds, except the updating the list error
+    if(this.state.error.length !== 0 && this.state.error !== 'Updating the list...') {
       setTimeout(() => {
         this.setState(() => ({
           error: ''
@@ -102,12 +102,9 @@ class BuyingList extends Component {
               </Col>
           </Row>
 
-          
-          
+          <Container className='container--list'> 
+                  {/* Disabling users from clicking on the buttons, depending on their Internet connection */}
 
-          <Container className='container--list'>
-                <div className='test'>
-                
                   <Offline>
                   {!this.props.state.length ? <p className='lead py-4 mb-0'>Currently nothing on the list</p> :
                   this.props.state.map(item => <ReduxedBuyingListItem key={item.id} item={item} isOnline={false}/>)}
@@ -116,21 +113,19 @@ class BuyingList extends Component {
                   {!this.props.state.length ? <p className='lead py-4 mb-0'>Currently nothing on the list</p> :
                   this.props.state.map(item => <ReduxedBuyingListItem key={item.id} item={item} isOnline={true}/>)}
                   </Online>
-
-                </div>
                 
-
                 <div className='formTodo'>
                     <Form onSubmit={this.handleAdd}>
                       <Row>
                         <Col className='my-2'>
+                        {/* Preventing users from submitting, depending on their Internet connection */}
                           <Online>
                             <Form.Control autoComplete='off' type="text" name='todoItem' 
-                            placeholder="Type your option here." disabled='false'/>
+                            placeholder="Type your option here." disabled={false}/>
                           </Online>
                           <Offline>
                             <Form.Control autoComplete='off' type="text" name='todoItem' 
-                            placeholder="You're offline. Can't add/delete options" disabled='true'/>
+                            placeholder="You're offline. Can't add/delete options" disabled={true}/>
                           </Offline>
                         </Col>
                       </Row> 
@@ -149,10 +144,9 @@ class BuyingList extends Component {
                                 
                 {/* Error handling */}
                 {this.state.error.length !== 0 && <p className='mt-3 mb-2'>{this.state.error}</p>}
-
-
           </Container>
-        
+
+          {/* Bottom nav */}
           <Row className='endRow text-center pt-2'>
               <Col>
                   <Link to='/buyingList'>
@@ -174,13 +168,16 @@ class BuyingList extends Component {
                   </Link>
               </Col>
           </Row>
+
+          
       </Container>
       </div>
     );
   }
 }
 
-store.subscribe(() => console.log(store.getState()))
+// store.subscribe(() => console.log(store.getState()))
+store.subscribe(() => store.getState())
 
 const mapStateToProps = (state) => ({
   state

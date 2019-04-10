@@ -1,3 +1,5 @@
+// Container types
+
 .container {
     background-color: rgb(192, 185, 177);
     
@@ -18,12 +20,15 @@
     overflow: auto;
 }
 
+// Header
 
 .header {
     background-color: blueviolet;
     color: white;
     font-size: 2.5rem;
 }
+
+// Colors
 
 .fas {
     color: blueviolet;
@@ -33,6 +38,8 @@
     color: blueviolet;
 }
 
+// Typography/text styling
+
 .optionText {
     word-wrap: break-word;
 }
@@ -40,6 +47,8 @@
 a:hover {
     text-decoration: none;
 }
+
+// Footer
 
 .endRow {
     background-color: rgb(248, 248, 248);
@@ -56,6 +65,8 @@ a:hover {
     margin-left: -3px;
     top: 0;
   }
+
+// Breakpoints
 
 @media only screen and (min-width : 700px) {
     .endRow {

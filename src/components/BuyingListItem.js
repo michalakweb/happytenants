@@ -19,6 +19,7 @@ const BuyingListItem = (props) => (
     </div>
 );
 
+/* Connecting the individual list item with the redux store, to be able to dispatch the 'delete_item' action  */
 const mapStateToProps = (state) => ({
     state
 });

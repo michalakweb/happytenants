@@ -1,4 +1,9 @@
 import {database} from '../../firebase/firebase';
+import { store } from '../store';
+
+// Adding/removing makes a request to firebase first.
+// Once the request is succesful it dispatches actions to the local Redux store.
+// Next localStorage is updated.
 
 export const addItemAction = (item) => ({
     type: 'ADD_ITEM',
@@ -15,6 +20,9 @@ export const startAddItemAction = (itemData) => {
                 id: ref.key, 
                 ...item
             }));
+
+            const myJSON = JSON.stringify(store.getState());
+            localStorage.setItem('listItems', myJSON);
         });
     };
 };
@@ -30,7 +38,9 @@ export const startRemoveItemAction = ({id}) => {
         
         return database.ref(`todoList/${id}`).remove()
         .then(() => {
-            dispatch(removeItemAction({id}))
+            dispatch(removeItemAction({id}));
+            const myJSON = JSON.stringify(store.getState());
+            localStorage.setItem('listItems', myJSON);
         });
     };
 };

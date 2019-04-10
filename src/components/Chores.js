@@ -13,7 +13,9 @@ import '../style.scss';
 // Setting the locale to pl, to have Monday as first day of the week
 moment.locale('pl')
 
-// weekly time sets for dispatching chores
+// Weekly time sets for dispatching chores.
+// In this case there are 3 people in the house, but only two chores to do, so
+// there is always a week when one person doesn't have to do anything.
 let set1 = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37, 40, 43, 46, 49, 52];
 let set2 = [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38, 41, 44, 47, 50];
 let set3 = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51];
@@ -21,7 +23,7 @@ let set3 = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51];
 class Dashboard extends React.Component {
     state = {
         people: ['Kamil', 'Kasia', 'Mateusz'],
-        // week fetches the current week number (eg. 1 out of 52)
+        // week fetches the current week number (eg. "1" out of 52)
         week: Number(moment().format('w')),
     }
 
@@ -42,6 +44,7 @@ class Dashboard extends React.Component {
                             </Col>
                             <Col className='align-self-center'>
                                 <p className='h2'> 
+                                    {/* set of if/else statements to determine who has to do the chores */}
                                     {
                                     set1.includes(this.state.week) ? this.state.people[0] : 
                                     (set3.includes(this.state.week) ? this.state.people[1] : this.state.people[2])
@@ -56,15 +59,17 @@ class Dashboard extends React.Component {
                             </Col>
                             <Col className='align-self-center'>
                                 <p className='h2'>
+                                    {/* set of if/else statements to determine who has to do the chores */}
                                     {
-                                        set2.includes(this.state.week) ? this.state.people[0] : 
-                                        (set1.includes(this.state.week) ? this.state.people[1] : this.state.people[2])
+                                    set2.includes(this.state.week) ? this.state.people[0] : 
+                                    (set1.includes(this.state.week) ? this.state.people[1] : this.state.people[2])
                                     }
                                 </p>
                             </Col>
                         </Row>
                     </Container>
                    
+                    {/* Bottom nav */}
                     <Row className='endRow text-center pt-2'>
                         <Col>
                             <Link to='/buyingList'>
