@@ -7525,6 +7525,10 @@ react-context-toolbox@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/react-context-toolbox/-/react-context-toolbox-2.0.2.tgz#35637287cb23f801e6ed802c2bb7a97e1f04e3fb"
 
+react-detect-offline@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-detect-offline/-/react-detect-offline-2.3.0.tgz#7ff517a85d549ca27a70b3631ca5b18d95d78a06"
+
 react-dev-utils@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-8.0.0.tgz#7c5b227a45a32ea8ff7fbc318f336cf9e2c6e34c"

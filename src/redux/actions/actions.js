@@ -35,10 +35,15 @@ export const startRemoveItemAction = ({id}) => {
     };
 };
 
-const setListAction = (list) => ({
+export const setListAction = (list) => ({
     type: 'SET_LIST',
     list
 });
+
+// the async function below grabs the todoList items from the database
+// once it finishes it populates an array with objects/list items
+// when it's done the "setListAction" is dispatched to update the store
+// localStore also gets updated 
 
 export const startSetListAction = () => {
     return (dispatch) => {
@@ -53,6 +58,8 @@ export const startSetListAction = () => {
             });
 
             dispatch(setListAction(listItems));
+            const myJSON = JSON.stringify(listItems);
+            localStorage.setItem('listItems', myJSON);
         });
     };
 };

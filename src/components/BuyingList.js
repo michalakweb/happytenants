@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import ReduxedBuyingListItem from './BuyingListItem';
+import { Offline, Online } from "react-detect-offline";
 
 //Firebase
 import {database} from '../firebase/firebase';
@@ -11,37 +12,58 @@ import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import '../style.scss';
 
 //Redux
-import {startAddItemAction, startSetListAction} from '../redux/actions/actions';
+import {startAddItemAction, startSetListAction, setListAction} from '../redux/actions/actions';
 import {store} from '../redux/store';
 import {connect} from 'react-redux';
 
 
 class BuyingList extends Component {
   state = {
-    error: ''
+    error: '',
+    isOnline: undefined
   }
 
   componentDidMount = () => {
-    const connectedRef = database.ref(".info/connected");
+    // After the component mounts it checks if it's the first time the app runs, by
+    // checking if TODO list items have been set in LocalStorage previously.
+    // If so it will get them and afterwards connects with firebase to update the redux store and
+    // show the latest state.
 
+    const myListJSON = localStorage.getItem('listItems');
+    if(!!myListJSON) {
+      const listItems = JSON.parse(myListJSON);
+      this.props.dispatch(setListAction(listItems));
+    }
+
+    const connectedRef = database.ref(".info/connected");
     connectedRef.on("value", (snap) => {
       if (snap.val() === true) {
-        this.props.dispatch(startSetListAction());
-
+        this.props.dispatch(startSetListAction())
+        .then(() => {
+          this.setState(() => ({
+            error: ''
+          }));
+        });
+        
       } else {
-        console.log('not connected')
+        this.setState(() => ({
+          error: `Updating the list...`
+        }));
       }
     });
   }
 
   componentDidUpdate = () => {
-    // Error message disappears after two seconds
-    if(this.state.error.length !== 0) {
+    // Error messages disappear after two seconds, except when:
+    //  - the database is being updated
+    //  - there is no internet
+    if(this.state.error.length !== 0 && this.state.error !== "You're offline"
+      && this.state.error !== "Updating the list..." ) {
       setTimeout(() => {
         this.setState(() => ({
           error: ''
         }))
-      }, 2000)
+      }, 2500)
     }
   }
 
@@ -74,6 +96,19 @@ class BuyingList extends Component {
     }
   };
 
+  handleConnectionOn = () => {
+    this.setState(() => ({
+      isOnline: true
+    }));
+  };
+
+  handleConnectionOff = () => {
+    this.setState(() => ({
+      isOnline: false,
+      error: `You're offline`
+    }));
+  };
+
   render() {
     return (
       <div>
@@ -83,6 +118,9 @@ class BuyingList extends Component {
                   <h1 className="display-4 py-4 header">Todo list:</h1>
               </Col>
           </Row>
+
+          <Offline onChange={this.handleConnectionOff}></Offline>
+          <Online onChange={this.handleConnectionOn}></Online>
 
           <Container className='container--list'>
                 <div className='test'>
