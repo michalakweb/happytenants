@@ -19,8 +19,7 @@ import {connect} from 'react-redux';
 
 class BuyingList extends Component {
   state = {
-    error: '',
-    isOnline: undefined
+    error: ''
   }
 
   componentDidMount = () => {
@@ -43,7 +42,7 @@ class BuyingList extends Component {
           this.setState(() => ({
             error: ''
           }));
-        });
+        })
         
       } else {
         this.setState(() => ({
@@ -54,16 +53,13 @@ class BuyingList extends Component {
   }
 
   componentDidUpdate = () => {
-    // Error messages disappear after two seconds, except when:
-    //  - the database is being updated
-    //  - there is no internet
-    if(this.state.error.length !== 0 && this.state.error !== "You're offline"
-      && this.state.error !== "Updating the list..." ) {
+    // Error messages disappear after three seconds
+    if(this.state.error.length !== 0) {
       setTimeout(() => {
         this.setState(() => ({
           error: ''
         }))
-      }, 2500)
+      }, 3000)
     }
   }
 
@@ -96,19 +92,6 @@ class BuyingList extends Component {
     }
   };
 
-  handleConnectionOn = () => {
-    this.setState(() => ({
-      isOnline: true
-    }));
-  };
-
-  handleConnectionOff = () => {
-    this.setState(() => ({
-      isOnline: false,
-      error: `You're offline`
-    }));
-  };
-
   render() {
     return (
       <div>
@@ -119,15 +102,21 @@ class BuyingList extends Component {
               </Col>
           </Row>
 
-          <Offline onChange={this.handleConnectionOff}></Offline>
-          <Online onChange={this.handleConnectionOn}></Online>
+          
+          
 
           <Container className='container--list'>
                 <div className='test'>
-                {
-                  !this.props.state.length ? <p className='lead py-4 mb-0'>Currently nothing on the list</p> :
-                  this.props.state.map(item => <ReduxedBuyingListItem key={item.id} item={item}/>)
-                }
+                
+                  <Offline>
+                  {!this.props.state.length ? <p className='lead py-4 mb-0'>Currently nothing on the list</p> :
+                  this.props.state.map(item => <ReduxedBuyingListItem key={item.id} item={item} isOnline={false}/>)}
+                  </Offline>
+                  <Online>
+                  {!this.props.state.length ? <p className='lead py-4 mb-0'>Currently nothing on the list</p> :
+                  this.props.state.map(item => <ReduxedBuyingListItem key={item.id} item={item} isOnline={true}/>)}
+                  </Online>
+
                 </div>
                 
 
@@ -135,14 +124,24 @@ class BuyingList extends Component {
                     <Form onSubmit={this.handleAdd}>
                       <Row>
                         <Col className='my-2'>
-                          <Form.Control autoComplete='off' type="text" name='todoItem' placeholder="Type your option here" />
+                          <Online>
+                            <Form.Control autoComplete='off' type="text" name='todoItem' 
+                            placeholder="Type your option here." disabled='false'/>
+                          </Online>
+                          <Offline>
+                            <Form.Control autoComplete='off' type="text" name='todoItem' 
+                            placeholder="You're offline. Can't add/delete options" disabled='true'/>
+                          </Offline>
                         </Col>
                       </Row> 
                       <Row>
                         <Col className='my-2'>
-                          <Button block variant="primary" type="submit">
-                            Add task
-                          </Button>
+                          <Online><Button block variant="primary" type="submit">
+                          Add task</Button>
+                          </Online>
+                          <Offline><Button disabled block variant="primary" type="submit">
+                          Add task</Button>
+                          </Offline>
                         </Col>
                       </Row>
                      </Form>
