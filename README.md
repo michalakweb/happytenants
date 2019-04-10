@@ -5,6 +5,8 @@ Happy Tenants is an information tracker that has two features:
 - adding items to a todo list
 - viewing the current chores for the week.
 
+Working example: [https://michalakweb.github.io/happytenants/](https://michalakweb.github.io/happytenants/)
+
 It's in beta phase and serves more as a showcase of technologies used in it. It's a React app that uses ReactRouter for routing, Redux for managing state and Firebase to serve data among different users.  It's also a Progressive Web App - you can add it to your Andoid/iOS homescreen! 
 
 Currently, all users are allowed to make changes into the firebase and the chores for the week are set programatically. That will change in the future releases. 
