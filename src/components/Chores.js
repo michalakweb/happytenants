@@ -37,8 +37,8 @@ class Dashboard extends React.Component {
                     <Container className='container--list'>
                         <Row className='py-5'>
                             <Col xs={5}>
-                                <i className="fas fa-utensils fa-3x"></i>
-                                <i class="fas fa-trash-alt fa-3x"></i>
+                                <i className="fas fa-utensils fa-2x px-2"></i>
+                                <i className="fas fa-trash-alt fa-2x px-2"></i>
                             </Col>
                             <Col className='align-self-center'>
                                 <p className='h2'> 

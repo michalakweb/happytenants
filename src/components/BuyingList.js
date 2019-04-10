@@ -23,9 +23,11 @@ class BuyingList extends Component {
 
   componentDidMount = () => {
     const connectedRef = database.ref(".info/connected");
+
     connectedRef.on("value", (snap) => {
       if (snap.val() === true) {
         this.props.dispatch(startSetListAction());
+
       } else {
         console.log('not connected')
       }
@@ -33,6 +35,7 @@ class BuyingList extends Component {
   }
 
   componentDidUpdate = () => {
+    // Error message disappears after two seconds
     if(this.state.error.length !== 0) {
       setTimeout(() => {
         this.setState(() => ({
@@ -48,13 +51,15 @@ class BuyingList extends Component {
     e.target.elements.todoItem.value = '';
     e.target.elements.todoItem.focus();
 
+    // A set of checks to prevent duplicate or invalid submissions
+
     if(typeof todoItem !== "string" || todoItem === '' || todoItem.length > 120) {
       this.setState(() => ({
-        error: 'Invalid type of submission. Try again.'
+        error: 'Submission has more than 120 characters or is blank. Try again.'
       }));
     }
 
-    else if(this.props.state.includes(todoItem)) {
+    else if(this.props.state.some(el => el.description === todoItem)) {
       this.setState(() => ({
         error: 'This option already exists. Try again.'
       }));
@@ -86,6 +91,7 @@ class BuyingList extends Component {
                   this.props.state.map(item => <ReduxedBuyingListItem key={item.id} item={item}/>)
                 }
                 </div>
+                
 
                 <div className='formTodo'>
                     <Form onSubmit={this.handleAdd}>
