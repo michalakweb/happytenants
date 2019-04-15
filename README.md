@@ -14,7 +14,6 @@ Currently, all users are allowed to make changes into the firebase and the chore
 ## Future Beta Releases
 * 0.2.1
     * Add tests through Jest
-    * Figure out how to prevent GET requests from firebase when app is offline
 * 0.2.2
     * Allow only registered users to read and write information to firebase
 * 0.2.3
