@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {startRemoveItemAction} from '../redux/actions/actions';
 import {Button, Row, Col} from 'react-bootstrap';
 
-const BuyingListItem = (props) => (
+export const BuyingListItem = (props) => (
     <div>
         <Row className='py-3 pl-2'>
             <Col xs={8} lg={10}><p className='lead optionText'>{props.item.description}</p></Col>

@@ -17,7 +17,7 @@ import {store} from '../redux/store';
 import {connect} from 'react-redux';
 
 
-class BuyingList extends Component {
+export class BuyingList extends Component {
   state = {
     error: ''
   }
