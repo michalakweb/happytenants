@@ -27,6 +27,26 @@ Currently, all users are allowed to make changes into the firebase and the chore
     * The first proper release
 * 0.0.1 beta
     * Work in progress
+    
+## Deployment
+
+### `git clone https://github.com/michalakweb/happytenants.git`
+
+### `npm install || yarn install`
+Grab the dependencies.
+
+### `npm start || yarn start`
+Runs the app in the development mode.
+
+### `npm test`
+Launches the test runner in the interactive watch mode.
+
+### `npm run build`
+Builds the app for production to the `build` folder.
+
+## Author
+
+Mateusz – michalakweb@gmail.com
 
 ## Author
 
