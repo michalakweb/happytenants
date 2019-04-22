@@ -15,7 +15,6 @@ Currently, all users are allowed to make changes into the firebase and the chore
 
 ## Future Releases
 * 0.2.2
-    * Push notifications for chores
     * Integrate FontAwesome for React
 * 0.2.3
     * Allow only registered users to write information to firebase
