@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "996473cc172d6738bb5c",
+    "revision": "43d1ecd20254acde241c",
     "url": "/happytenants/static/css/main.242a3a25.chunk.css"
   },
   {
-    "revision": "996473cc172d6738bb5c",
-    "url": "/happytenants/static/js/main.f0c00d99.chunk.js"
+    "revision": "43d1ecd20254acde241c",
+    "url": "/happytenants/static/js/main.79901d5a.chunk.js"
   },
   {
     "revision": "4d23210ed51cc219c445",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/happytenants/static/js/2.69f85ae7.chunk.js"
   },
   {
-    "revision": "d6eac50e7451c897949b3ece3e24f35b",
+    "revision": "3903ef766c390e3cb53e2d1d1ed252cf",
     "url": "/happytenants/index.html"
   }
 ];
