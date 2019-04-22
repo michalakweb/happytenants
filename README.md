@@ -11,7 +11,8 @@ It's in beta phase and serves more as a showcase of technologies used in it. It'
 
 Currently, all users are allowed to make changes into the firebase and the chores for the week are set programatically. That will change in the future releases. 
 
-## Future Beta Releases
+
+## Future Releases
 * 0.2.1
     * Add tests through Jest
 * 0.2.2
@@ -22,11 +23,13 @@ Currently, all users are allowed to make changes into the firebase and the chore
 * more to come!
 
 
+
 ## Release History
 * 0.2 beta
     * The first proper release
 * 0.0.1 beta
     * Work in progress
+    
     
 ## Deployment
 
