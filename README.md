@@ -11,6 +11,7 @@ It's in beta phase and serves more as a showcase of technologies used in it. It'
 
 Currently, all users are allowed to make changes into the firebase and the chores for the week are set programatically. That will change in the future releases. 
 
+<br/>
 
 ## Future Releases
 * 0.2.1
@@ -22,14 +23,15 @@ Currently, all users are allowed to make changes into the firebase and the chore
     * Integrate FontAwesome for React
 * more to come!
 
-
+<br/>
 
 ## Release History
 * 0.2 beta
     * The first proper release
 * 0.0.1 beta
     * Work in progress
-    
+
+<br/>
     
 ## Deployment
 
@@ -47,9 +49,7 @@ Launches the test runner in the interactive watch mode.
 ### `npm run build`
 Builds the app for production to the `build` folder.
 
-## Author
-
-Mateusz – michalakweb@gmail.com
+<br/>
 
 ## Author
 
