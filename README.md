@@ -14,21 +14,27 @@ Currently, all users are allowed to make changes into the firebase and the chore
 <br/>
 
 ## Future Releases
-* 0.2.1
-    * Add tests through Jest
 * 0.2.2
-    * Allow only registered users to read and write information to firebase
-* 0.2.3
-    * Push notifications
+    * Push notifications for chores
     * Integrate FontAwesome for React
-* more to come!
+* 0.2.3
+    * Allow only registered users to write information to firebase
+* 0.3
+    * Mandatory registration, ability to create lists, that are shared within a group
+    * private and public routes
+    * demo screen
+* 0.4
+    * chores can be now set by the group
 
 <br/>
 
+
 ## Release History
-* 0.2 beta
+* 0.2.1 beta
+    * Added rendering Jest tests
+* 0.2 
     * The first proper release
-* 0.0.1 beta
+* 0.0.1 
     * Work in progress
 
 <br/>
