@@ -1,14 +1,16 @@
 import React from 'react';
+import BottomNav from './BottomNav';
 
 // Moment
 import moment from 'moment';
 import 'moment/locale/pl';
 
-// Bootstrap & styles
+// Bootstrap, styles, icons
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import '../style.scss';
-import BottomNav from './BottomNav';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 // Setting the locale to pl, to have Monday as first day of the week
 moment.locale('pl')
@@ -39,8 +41,8 @@ class Dashboard extends React.Component {
                     <Container className='container--list'>
                         <Row className='py-5'>
                             <Col xs={5}>
-                                <i className="fas fa-utensils fa-2x px-2"></i>
-                                <i className="fas fa-trash-alt fa-2x px-2"></i>
+                                <FontAwesomeIcon className='fontAwesomeIcon px-2' size='3x' icon="utensils" />
+                                <FontAwesomeIcon className='fontAwesomeIcon px-2' size='3x' icon="trash-alt" />
                             </Col>
                             <Col className='align-self-center'>
                                 <p className='h2'> 
@@ -54,8 +56,8 @@ class Dashboard extends React.Component {
                         </Row>
                         <Row className='py-5'>
                             <Col xs={5} className=''>
-                                <i className="fas fa-bath fa-2x px-2"></i>
-                                <i className="fas fa-broom fa-2x px-2"></i>
+                                <FontAwesomeIcon className='fontAwesomeIcon px-2' size='3x' icon="bath" />
+                                <FontAwesomeIcon className='fontAwesomeIcon px-2' size='3x' icon="broom" />
                             </Col>
                             <Col className='align-self-center'>
                                 <p className='h2'>
@@ -70,6 +72,7 @@ class Dashboard extends React.Component {
                     </Container>
                    
                     <BottomNav/>
+                    
                 </Container>
             </div>
         );

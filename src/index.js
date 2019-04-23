@@ -17,10 +17,11 @@ import {Provider} from 'react-redux';
 
 //Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
+import { faStroopwafel, faClipboardList, faBroom, faBath, faUtensils, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faStroopwafel)
+library.add(faStroopwafel, faClipboardList, faBroom, faBath, faUtensils, faTrashAlt);
 
+//Hash History
 const hashHistory = createHashHistory({ basename: process.env.PUBLIC_URL });
 
 const jsx = (

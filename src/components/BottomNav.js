@@ -1,16 +1,16 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const BottomNav = () => (
     <div>
         <Row className='endRow text-center pt-2'>
             <Col>
-            <FontAwesomeIcon icon="stroopwafel" />
+            
                 <Link to='/buyingList'>
                     <p className='mb-1'>
-                        <i className="fas fa-clipboard-list fa-2x"></i>
+                        <FontAwesomeIcon className='fontAwesomeIcon' size='2x' icon="clipboard-list" />
                     </p>
                     <p className='mb-1 p--nav'>Todo</p>
                 </Link>
@@ -21,7 +21,7 @@ const BottomNav = () => (
             <Col>
                 <Link to='/'>
                     <p className='mb-1'>
-                        <i className="fas fa-broom fa-2x"></i>
+                        <FontAwesomeIcon className='fontAwesomeIcon' size='2x' icon="broom" />
                     </p>
                     <p className='mb-1 p--nav'>Chores</p>
                 </Link>
