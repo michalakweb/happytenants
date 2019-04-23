@@ -4,9 +4,13 @@
   "homepage": "https://michalakweb.github.io/happytenants",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "bootstrap": "^4.3.1",
     "firebase": "^5.9.2",
     "gh-pages": "^2.0.1",
+    "jest-dom": "^3.1.3",
     "moment": "^2.24.0",
     "moment-range": "^4.0.2",
     "moment-recur": "^1.0.7",
@@ -19,10 +23,9 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "react-testing-library": "^6.1.2",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0",
-    "jest-dom": "^3.1.3",
-    "react-testing-library": "^6.1.2"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 
 // Moment
 import moment from 'moment';
@@ -9,6 +8,7 @@ import 'moment/locale/pl';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import '../style.scss';
+import BottomNav from './BottomNav';
 
 // Setting the locale to pl, to have Monday as first day of the week
 moment.locale('pl')
@@ -69,28 +69,7 @@ class Dashboard extends React.Component {
                         </Row>
                     </Container>
                    
-                    {/* Bottom nav */}
-                    <Row className='endRow text-center pt-2'>
-                        <Col>
-                            <Link to='/buyingList'>
-                                <p className='mb-1'>
-                                    <i className="fas fa-clipboard-list fa-2x"></i>
-                                </p>
-                                <p className='mb-1 p--nav'>Todo</p>
-                            </Link>
-                        </Col>
-                        <Col xs={1}>
-                            <div className="vl"></div>
-                        </Col>    
-                        <Col>
-                            <Link to='/'>
-                                <p className='mb-1'>
-                                    <i className="fas fa-broom fa-2x"></i>
-                                </p>
-                                <p className='mb-1 p--nav'>Chores</p>
-                             </Link>
-                        </Col>
-                    </Row>
+                    <BottomNav/>
                 </Container>
             </div>
         );

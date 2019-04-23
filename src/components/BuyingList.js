@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 import ReduxedBuyingListItem from './BuyingListItem';
+import BottomNav from './BottomNav';
 import { Offline, Online } from "react-detect-offline";
 
 //Firebase
@@ -10,6 +10,7 @@ import {database} from '../firebase/firebase';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import '../style.scss';
+
 
 //Redux
 import {startAddItemAction, startSetListAction, setListAction} from '../redux/actions/actions';
@@ -144,31 +145,10 @@ export class BuyingList extends Component {
                                 
                 {/* Error handling */}
                 {this.state.error.length !== 0 && <p className='mt-3 mb-2'>{this.state.error}</p>}
+
           </Container>
 
-          {/* Bottom nav */}
-          <Row className='endRow text-center pt-2'>
-              <Col>
-                  <Link to='/buyingList'>
-                      <p className='mb-1'>
-                          <i className="fas fa-clipboard-list fa-2x"></i>
-                      </p>
-                      <p className='mb-1 p--nav'>Todo</p>
-                  </Link>
-              </Col>
-              <Col xs={1}>
-                  <div className="vl"></div>
-              </Col>    
-              <Col>
-                  <Link to='/'>
-                      <p className='mb-1'>
-                          <i className="fas fa-broom fa-2x"></i>
-                      </p>
-                      <p className='mb-1 p--nav'>Chores</p>
-                  </Link>
-              </Col>
-          </Row>
-
+          <BottomNav/>
           
       </Container>
       </div>

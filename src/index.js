@@ -15,6 +15,12 @@ import Chores from './components/Chores';
 import {store} from './redux/store';
 import {Provider} from 'react-redux';
 
+//Font Awesome
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faStroopwafel)
+
 const hashHistory = createHashHistory({ basename: process.env.PUBLIC_URL });
 
 const jsx = (
@@ -34,4 +40,4 @@ ReactDOM.render(jsx, document.getElementById('root'));
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.register();
+serviceWorker.unregister();
