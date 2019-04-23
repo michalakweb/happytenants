@@ -1,6 +1,6 @@
 {
   "name": "happy-tenants",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "homepage": "https://michalakweb.github.io/happytenants",
   "private": true,
   "dependencies": {
