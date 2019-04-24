@@ -107,7 +107,7 @@ export class BuyingList extends Component {
   };
 
   handleLogin = () => {
-    firebase.auth().signInWithPopup(googleAuthProvider)
+    firebase.auth().signInWithRedirect(googleAuthProvider)
   }
 
   handleLogout = () => {
