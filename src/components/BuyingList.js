@@ -144,7 +144,8 @@ export class BuyingList extends Component {
           </Row>
 
           <Container className='container--list'> 
-                  {/* Disabling users from clicking on the buttons, depending on their Internet connection */}
+                  {/* Disabling users from clicking on the buttons, depending on their Internet connection AND
+                      if they're logged in */}
 
                   <Offline>
                   {!this.props.state.length ? <p className='lead py-4 mb-0'>Currently nothing on the list</p> :
