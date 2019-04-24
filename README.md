@@ -14,8 +14,6 @@ Currently, all users are allowed to make changes into the firebase and the chore
 <br/>
 
 ## Future Releases
-* 0.2.3
-    * Allow only registered users to write information to firebase
 * 0.3
     * Mandatory registration, ability to create lists, that are shared within a group
     * private and public routes
@@ -27,6 +25,8 @@ Currently, all users are allowed to make changes into the firebase and the chore
 
 
 ## Release History
+* 0.2.3
+    * Only registered users can write information to firebase
 * 0.2.2
     * Integrated FontAwesome for React
 * 0.2.1 beta
