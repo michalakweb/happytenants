@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/happytenants/precache-manifest.a4a2196d89f96e989b3ae4db95a985da.js"
+  "/happytenants/precache-manifest.7f69d0c720f6714535602fd02a37db1c.js"
 );
 
 workbox.clientsClaim();
