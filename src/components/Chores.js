@@ -40,12 +40,12 @@ class Dashboard extends React.Component {
                     </Row>
                     <Container className='container--list'>
                         <Row className='py-5'>
-                            <Col xs={5}>
+                            <Col xs={6}>
                                 <FontAwesomeIcon className='fontAwesomeIcon px-2' size='3x' icon="utensils" />
                                 <FontAwesomeIcon className='fontAwesomeIcon px-2' size='3x' icon="trash-alt" />
                             </Col>
                             <Col className='align-self-center'>
-                                <p className='h2'> 
+                                <p className='h4'> 
                                     {/* set of if/else statements to determine who has to do the chores */}
                                     {
                                     set1.includes(this.state.week) ? this.state.people[0] : 
@@ -55,12 +55,12 @@ class Dashboard extends React.Component {
                             </Col>
                         </Row>
                         <Row className='py-5'>
-                            <Col xs={5} className=''>
+                            <Col xs={6} className=''>
                                 <FontAwesomeIcon className='fontAwesomeIcon px-2' size='3x' icon="bath" />
                                 <FontAwesomeIcon className='fontAwesomeIcon px-2' size='3x' icon="broom" />
                             </Col>
                             <Col className='align-self-center'>
-                                <p className='h2'>
+                                <p className='h4'>
                                     {/* set of if/else statements to determine who has to do the chores */}
                                     {
                                     set2.includes(this.state.week) ? this.state.people[0] : 
