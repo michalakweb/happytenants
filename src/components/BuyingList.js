@@ -4,6 +4,7 @@ import BottomNav from './BottomNav';
 import { Offline, Online } from "react-detect-offline";
 
 //Firebase
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import {firebase, database, googleAuthProvider} from '../firebase/firebase';
 import 'firebase/auth';
 
@@ -23,6 +24,21 @@ export class BuyingList extends Component {
     error: '',
     user: null
   }
+
+  // Configure FirebaseUI.
+  uiConfig = {
+    // Popup signin flow rather than redirect flow.
+    signInFlow: 'popup',
+    // We will display Google and Facebook as auth providers.
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID
+    ],
+    callbacks: {
+      // Avoid redirects after sign-in.
+      signInSuccessWithAuthResult: () => false
+    }
+  };
 
   componentDidMount = () => {
     // After the component mounts it 
@@ -199,11 +215,10 @@ export class BuyingList extends Component {
                     <Alert className='mt-3 mb-2' variant='danger'>
                       Register to add and delete list items.
                     </Alert>
-                    <Button block onClick={this.handleLogin}>Register</Button>  
-                  </div>)
-                  //For testing 
-                  //<Button onClick={this.handleLogout}>Logout</Button> 
+                    <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/> 
+                  </div>)        
                 }
+                <Button onClick={this.handleLogout}>Logout</Button> 
 
           </Container>
 
