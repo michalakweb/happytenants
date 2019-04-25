@@ -5,7 +5,7 @@ import { Offline, Online } from "react-detect-offline";
 
 //Firebase
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import {firebase, database, googleAuthProvider} from '../firebase/firebase';
+import {firebase, database } from '../firebase/firebase';
 import 'firebase/auth';
 
 // Bootstrap & styles
@@ -24,21 +24,6 @@ export class BuyingList extends Component {
     error: '',
     user: null
   }
-
-  // Configure FirebaseUI.
-  uiConfig = {
-    // Popup signin flow rather than redirect flow.
-    signInFlow: 'popup',
-    // We will display Google and Facebook as auth providers.
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID
-    ],
-    callbacks: {
-      // Avoid redirects after sign-in.
-      signInSuccessWithAuthResult: () => false
-    }
-  };
 
   componentDidMount = () => {
     // After the component mounts it 
@@ -121,10 +106,6 @@ export class BuyingList extends Component {
       this.props.dispatch(startAddItemAction(todoItem));
     }
   };
-
-  handleLogin = () => {
-    firebase.auth().signInWithRedirect(googleAuthProvider)
-  }
 
   handleLogout = () => {
     firebase.auth().signOut().then(() => {

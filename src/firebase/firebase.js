@@ -14,6 +14,20 @@ var config = {
 firebase.initializeApp(config);
   
 const database = firebase.database();
-const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export {firebase, database, googleAuthProvider};
+// Configure FirebaseUI.
+export const uiConfig = {
+    // Popup signin flow rather than redirect flow.
+    signInFlow: 'popup',
+    // We will display Google and Facebook as auth providers.
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID
+    ],
+    callbacks: {
+      // Avoid redirects after sign-in.
+      signInSuccessWithAuthResult: () => false
+    }
+  };
+
+export {firebase, database };
