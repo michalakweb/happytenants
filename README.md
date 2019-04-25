@@ -23,6 +23,7 @@ Currently, all users are allowed to make changes into the firebase and the chore
     * other languages 
 * 0.6
     * improve styling
+    * GoogleFonts for React (?)
 * 0.7 
     * more complex testing
 * 0.8
