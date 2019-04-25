@@ -6,6 +6,7 @@ import './index.scss';
 import * as serviceWorker from './serviceWorker';
 import { Router, Route, Switch} from "react-router-dom";
 import { createHashHistory } from 'history'
+import PrivateRoute from './components/routes/PrivateRoute';
     
 //Components
 import ReduxedBuyingList from './components/BuyingList';
@@ -21,11 +22,9 @@ import {store} from './redux/store';
 import {Provider} from 'react-redux';
 import {isLoggedAction, notLoggedAction} from './redux/actions/actions';
 
-//Font Awesome
+//Font Awesome and library
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faStroopwafel, faClipboardList, faBroom, faBath, faUtensils, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-
-
 library.add(faStroopwafel, faClipboardList, faBroom, faBath, faUtensils, faTrashAlt);
 
 //Hash History
@@ -35,9 +34,9 @@ const jsx = (
     <Provider store={store}>
         <Router history={hashHistory}>
             <Switch>
-                <Route exact path='/' component={Chores}/>
-                <Route exact path='/login' component={LoginPage}/>
-                <Route path='/buyingList' component={ReduxedBuyingList}/>
+                <Route exact path='/' component={LoginPage}/>
+                <PrivateRoute exact path='/chores' component={Chores}/>
+                <PrivateRoute path='/list' component={ReduxedBuyingList}/>
                 <Route component={() => (<div>404 Not found 1</div>)} />
             </Switch>
         </Router>
@@ -59,15 +58,17 @@ firebase.auth().onAuthStateChanged(user => {
     if (user) {
         renderApp();
         store.dispatch(isLoggedAction());
-        if(hashHistory.location === '/login') hashHistory.push('/');
+        if (hashHistory.location.pathname === '/' || hashHistory.location.pathname === '/#/') {
+            hashHistory.push('/chores');
+        }
     } else {
         renderApp();
         store.dispatch(notLoggedAction());
-        hashHistory.push('/login');
+        hashHistory.push('/');
     }
   });
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register();

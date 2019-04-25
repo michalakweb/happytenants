@@ -4,7 +4,6 @@ import BottomNav from './BottomNav';
 import { Offline, Online } from "react-detect-offline";
 
 //Firebase
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import {firebase, database } from '../firebase/firebase';
 import 'firebase/auth';
 
@@ -21,8 +20,7 @@ import {connect} from 'react-redux';
 
 export class BuyingList extends Component {
   state = {
-    error: '',
-    user: null
+    error: ''
   }
 
   componentDidMount = () => {
@@ -141,17 +139,16 @@ export class BuyingList extends Component {
           </Row>
 
           <Container className='container--list'> 
-                  {/* Disabling users from clicking on the buttons, depending on their Internet connection AND
-                      if they're logged in */}
+                  {/* Disabling users from clicking on the buttons, depending on their Internet connection*/}
 
                   <Offline>
                   {!this.props.state.length ? <p className='lead py-4 mb-0'>Currently nothing on the list</p> :
-                  this.props.state.map(item => <ReduxedBuyingListItem key={item.id} item={item} isOnline={false}/>)}
+                  this.props.state.map(item => <ReduxedBuyingListItem key={item.id} item={item}/>)}
                   </Offline>
                   <Online>
                   {!this.props.state.length ? <p className='lead py-4 mb-0'>Currently nothing on the list</p> :
                   this.props.state.map(item => 
-                    <ReduxedBuyingListItem key={item.id} item={item} isOnline={true} logged={this.state.user}/>)}
+                    <ReduxedBuyingListItem key={item.id} item={item} isOnline={true}/>)}
                   </Online>
                 
                 <div className='formTodo'>
@@ -172,7 +169,7 @@ export class BuyingList extends Component {
                       </Row> 
                       <Row>
                         <Col className='my-2'>
-                          <Online><Button disabled={this.state.user === 'logged' ? false : true} block variant="primary" type="submit">
+                          <Online><Button disabled={false} block variant="primary" type="submit">
                           Add task</Button>
                           </Online>
                           <Offline><Button disabled block variant="primary" type="submit">
@@ -195,12 +192,10 @@ export class BuyingList extends Component {
                   (<div>
                     <Alert className='mt-3 mb-2' variant='danger'>
                       Register to add and delete list items.
-                    </Alert>
-                    <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/> 
+                    </Alert> 
                   </div>)        
                 }
-                <Button onClick={this.handleLogout}>Logout</Button> 
-
+                <Button onClick={() => firebase.auth().signOut()}>Logout</Button> 
           </Container>
 
           <BottomNav/>
@@ -215,7 +210,7 @@ export class BuyingList extends Component {
 store.subscribe(() => store.getState())
 
 const mapStateToProps = (state) => ({
-  state
+  state: state.todoList
 })
 
 const reduxedBuyingList = connect(mapStateToProps)(BuyingList);

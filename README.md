@@ -14,10 +14,7 @@ Currently, all users are allowed to make changes into the firebase and the chore
 <br/>
 
 ## Future Releases
-* 0.3
-    * setup, style login page
-    * integrate auth info with redux
-    * private/public routes
+* 0.3.2 beta
     * making data private to groups
     * demo link
 * 0.4
@@ -40,7 +37,11 @@ Currently, all users are allowed to make changes into the firebase and the chore
 
 
 ## Release History
-* 0.2.3 beta
+* 0.3.1 beta
+    * setup, style login page
+    * integrate auth info with redux
+    * private/public routes
+* 0.2.3 
     * Only registered users can write information to firebase
 * 0.2.2
     * Integrated FontAwesome for React

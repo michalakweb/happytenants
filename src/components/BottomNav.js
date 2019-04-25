@@ -8,7 +8,7 @@ const BottomNav = () => (
         <Row className='endRow text-center pt-2'>
             <Col>
             
-                <Link to='/buyingList'>
+                <Link to='/list'>
                     <p className='mb-1'>
                         <FontAwesomeIcon className='fontAwesomeIcon' size='2x' icon="clipboard-list" />
                     </p>
@@ -19,7 +19,7 @@ const BottomNav = () => (
                 <div className="vl"></div>
             </Col>    
             <Col>
-                <Link to='/'>
+                <Link to='/chores'>
                     <p className='mb-1'>
                         <FontAwesomeIcon className='fontAwesomeIcon' size='2x' icon="broom" />
                     </p>

@@ -10,7 +10,7 @@ export const BuyingListItem = (props) => (
 
             <Col xs={4} lg={2} className='text-right'>
                 <Button 
-                disabled={props.isOnline === false || props.logged !== 'logged'}
+                disabled={props.isOnline === false}
                 variant="outline-primary" className='button--deleteOption' onClick={() => {
                     props.dispatch(startRemoveItemAction({id : props.item.id}));
                 }}>Delete</Button>
