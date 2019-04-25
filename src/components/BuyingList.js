@@ -14,7 +14,7 @@ import '../style.scss';
 
 
 //Redux
-import {startAddItemAction, startSetListAction, setListAction} from '../redux/actions/actions';
+import {startAddItemAction, startSetListAction, startSetListAction2, setListAction} from '../redux/actions/actions';
 import {store} from '../redux/store';
 import {connect} from 'react-redux';
 
@@ -65,13 +65,13 @@ export class BuyingList extends Component {
   }
 
   componentDidUpdate = () => {
-    // Error messages disappear after three seconds, except the updating the list error
+    // Error messages disappear after two seconds, except the updating the list error
     if(this.state.error.length !== 0 && this.state.error !== 'Updating the list...') {
       setTimeout(() => {
         this.setState(() => ({
           error: ''
         }))
-      }, 3000)
+      }, 2000)
     };
 
   }
@@ -111,21 +111,6 @@ export class BuyingList extends Component {
       console.log(error);
     });
     
-  }
-  
-  handleInfo = () => {
-    var user = firebase.auth().currentUser;
-
-    if (user != null) {
-      user.providerData.forEach(function (profile) {
-        console.log("Sign-in provider: " + profile.providerId);
-        console.log(database.ref(`users/${profile.displayName}`))
-
-        database.ref(`users/${profile.displayName}`).set(profile.email)
-        
-      });
-
-    }
   }
 
   render() {
@@ -187,15 +172,29 @@ export class BuyingList extends Component {
                     {this.state.error}
                   </Alert>
                 }
-                {
-                  this.state.user === 'not logged' && 
-                  (<div>
-                    <Alert className='mt-3 mb-2' variant='danger'>
-                      Register to add and delete list items.
-                    </Alert> 
-                  </div>)        
-                }
+
                 <Button onClick={() => firebase.auth().signOut()}>Logout</Button> 
+
+                {//move to separate function
+                  // reroute all actions to new list
+                  // check places where nw lists are being created and pulled
+                  // add "load list from another user button"
+                }
+                <Button onClick={() => {
+                  const user = firebase.auth().currentUser;
+                  
+                  database.ref(`lists`).push({'todoList': {
+                    1: {
+                      'description': 'Bimbla '
+                    }
+                  }})
+                  .then((snap) => {
+                    database.ref(`users/${user.displayName}`).update({'list': snap.key});
+                  }) 
+                  .then(() => {
+                    this.props.dispatch(startSetListAction2())
+                  })
+                }}>Add List</Button>
           </Container>
 
           <BottomNav/>

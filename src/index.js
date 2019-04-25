@@ -16,6 +16,7 @@ import LoginPage from './components/LoginPage';
 //Firebase
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import {database} from './firebase/firebase'
 
 //Redux
 import {store} from './redux/store';
@@ -56,6 +57,14 @@ const renderApp = () => {
 // Routing whether the user is logged in or not
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
+        const ref = firebase.database().ref(`users/${user.displayName}`);
+        ref.once("value")
+        .then(function(snapshot) {
+            if (snapshot.val() === null) {
+                database.ref(`users/${user.displayName}`).set({'email': user.email });
+            } 
+        });
+ 
         renderApp();
         store.dispatch(isLoggedAction());
         if (hashHistory.location.pathname === '/' || hashHistory.location.pathname === '/#/') {
@@ -71,4 +80,4 @@ firebase.auth().onAuthStateChanged(user => {
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.register();
+serviceWorker.unregister();

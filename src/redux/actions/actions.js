@@ -1,5 +1,6 @@
-import {database} from '../../firebase/firebase';
+import {database, firebase} from '../../firebase/firebase';
 import { store } from '../store';
+import 'firebase/auth';
 
 export const isLoggedAction = () => ({
     type: "LOGGED"
@@ -79,5 +80,32 @@ export const startSetListAction = () => {
             const myJSON = JSON.stringify(listItems);
             localStorage.setItem('listItems', myJSON);
         });
+    };
+};
+
+export const startSetListAction2 = () => {
+    return (dispatch) => {
+        let listAddress = '';
+        const user = firebase.auth().currentUser;
+        database.ref(`users/${user.displayName}/list`)
+        .once('value', (snap) => {
+            listAddress = snap.val();
+        })
+        .then(() => {
+            return database.ref(`lists/${listAddress}/todoList`).once('value').then(snapshot => {
+                const listItems = [];
+    
+                snapshot.forEach(childSnapshot => {
+                    listItems.push({
+                        id: childSnapshot.key,
+                        ...childSnapshot.val()
+                    });
+                });
+    
+                dispatch(setListAction(listItems));
+                const myJSON = JSON.stringify(listItems);
+                localStorage.setItem('listItems', myJSON);
+            });
+        })
     };
 };
