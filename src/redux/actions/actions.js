@@ -1,6 +1,14 @@
 import {database} from '../../firebase/firebase';
 import { store } from '../store';
 
+export const isLoggedAction = () => ({
+    type: "LOGGED"
+});
+
+export const notLoggedAction = () => ({
+    type: "NOT_LOGGED"
+});
+
 // Adding/removing makes a request to firebase first.
 // Once the request is succesful it dispatches actions to the local Redux store.
 // Next localStorage is updated.

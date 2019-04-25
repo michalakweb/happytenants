@@ -19,6 +19,7 @@ import 'firebase/auth';
 //Redux
 import {store} from './redux/store';
 import {Provider} from 'react-redux';
+import {isLoggedAction, notLoggedAction} from './redux/actions/actions';
 
 //Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -34,8 +35,8 @@ const jsx = (
     <Provider store={store}>
         <Router history={hashHistory}>
             <Switch>
-                <Route exact path='/' component={LoginPage}/>
-                <Route exact path='/chores' component={Chores}/>
+                <Route exact path='/' component={Chores}/>
+                <Route exact path='/login' component={LoginPage}/>
                 <Route path='/buyingList' component={ReduxedBuyingList}/>
                 <Route component={() => (<div>404 Not found 1</div>)} />
             </Switch>
@@ -43,14 +44,26 @@ const jsx = (
     </Provider>
 )
 
-ReactDOM.render(jsx, document.getElementById('root'));
+let hasRendered = false;
+
+const renderApp = () => {
+    if(!hasRendered) {
+        ReactDOM.render(jsx, document.getElementById('root'));
+        hasRendered = true;
+    }
+}
+
 
 // Routing whether the user is logged in or not
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      hashHistory.push('/chores');
+        renderApp();
+        store.dispatch(isLoggedAction());
+        if(hashHistory.location === '/login') hashHistory.push('/');
     } else {
-      hashHistory.push('/');
+        renderApp();
+        store.dispatch(notLoggedAction());
+        hashHistory.push('/login');
     }
   });
 
