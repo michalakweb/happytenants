@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import ReduxedBuyingListItem from './BuyingListItem';
 import BottomNav from './BottomNav';
 import { Offline, Online } from "react-detect-offline";
@@ -17,14 +17,30 @@ import '../style.scss';
 import {startAddItemAction, startSetListAction, setListAction } from '../redux/actions/actions';
 import {store} from '../redux/store';
 import {connect} from 'react-redux';
+import { any } from 'prop-types';
 
-export class BuyingList extends Component {
-  state = {
+interface Props {
+  dispatch: any;
+  state: Array<object>;
+}
+
+interface State {
+  error: string;
+  hasList: boolean;
+  listAddress: any;
+  listAddressVisible: boolean;
+  joinListVisible: boolean;
+  user: string;
+}
+
+export class BuyingList extends React.Component<Props, State> {
+  state: State = {
     error: '',
     hasList: false,
     listAddress: null,
     listAddressVisible: false,
-    joinListVisible: false
+    joinListVisible: false,
+    user: ''
   }
 
   componentDidMount = () => {
@@ -39,7 +55,7 @@ export class BuyingList extends Component {
     }
 
     const connectedRef = database.ref(".info/connected");
-    connectedRef.on("value", (snap) => {
+    connectedRef.on("value", (snap: any) => {
       if (snap.val() === true) {
         this.props.dispatch(startSetListAction())
         .then(() => {
@@ -69,7 +85,7 @@ export class BuyingList extends Component {
 
     // Checking if the user has created a list already
     let listAddress = '';
-    const user = firebase.auth().currentUser;
+    const user: any = firebase.auth().currentUser;
     return database.ref(`users/${user.displayName}/list`)
     .once('value', (snap) => {
             listAddress = snap.val();
@@ -97,7 +113,7 @@ export class BuyingList extends Component {
 
     // Checking if the user has created a list already
     let listAddress = '';
-    const user = firebase.auth().currentUser;
+    const user: any = firebase.auth().currentUser;
     return database.ref(`users/${user.displayName}/list`)
     .once('value', (snap) => {
             listAddress = snap.val();
@@ -114,7 +130,7 @@ export class BuyingList extends Component {
 
   }
 
-  handleAdd = (e) => {
+  handleAdd = (e: any) => {
     e.preventDefault();
     let todoItem = e.target.elements.todoItem.value.trim();
     e.target.elements.todoItem.value = '';
@@ -128,7 +144,7 @@ export class BuyingList extends Component {
       }));
     }
 
-    else if(this.props.state.some(el => el.description === todoItem)) {
+    else if(this.props.state.some((el: any) => el.description === todoItem)) {
       this.setState(() => ({
         error: 'This option already exists. Try again.'
       }));
@@ -152,7 +168,7 @@ export class BuyingList extends Component {
   }
 
   handleCreateList = () => {
-    const user = firebase.auth().currentUser;
+    const user: any = firebase.auth().currentUser;
     database.ref(`lists`).push({'todoList': {
       1: {
         'description': 'First list entry'
@@ -178,7 +194,7 @@ export class BuyingList extends Component {
     }))
   }
 
-  handleJoinList = (e) => {
+  handleJoinList = (e: any) => {
     e.preventDefault();
     let list = e.target.elements.newList.value.trim();
     e.target.elements.newList.value = '';
@@ -195,7 +211,7 @@ export class BuyingList extends Component {
       firebase.database().ref("lists").once("value")
       .then((snap) => {
         if (snap.child(`${list}`).exists()) {
-          const user = firebase.auth().currentUser;
+          const user: any = firebase.auth().currentUser;
           return database.ref(`users/${user.displayName}`).update({'list': list})
           .then(() => {
           this.props.dispatch(startSetListAction())
@@ -227,11 +243,11 @@ export class BuyingList extends Component {
 
                   <Offline>
                   {!this.props.state.length ? <p className='lead py-4 mb-0'>Currently nothing on the list</p> :
-                  this.props.state.map(item => <ReduxedBuyingListItem key={item.id} item={item}/>)}
+                  this.props.state.map((item: any) => <ReduxedBuyingListItem isOnline={false} key={item.id} item={item}/>)}
                   </Offline>
                   <Online>
                   {!this.props.state.length ? <p className='lead py-4 mb-0'>Currently nothing on the list</p> :
-                  this.props.state.map(item => 
+                  this.props.state.map((item: any) => 
                     <ReduxedBuyingListItem key={item.id} item={item} isOnline={true}/>)}
                   </Online>
                 
@@ -346,7 +362,7 @@ export class BuyingList extends Component {
 // store.subscribe(() => console.log(store.getState()))
 store.subscribe(() => store.getState())
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   state: state.todoList
 })
 

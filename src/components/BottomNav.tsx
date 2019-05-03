@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const BottomNav = () => (
+const BottomNav: React.FunctionComponent = () => (
     <div>
         <Row className='endRow text-center pt-2'>
             <Col>
