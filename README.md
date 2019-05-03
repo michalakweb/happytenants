@@ -14,8 +14,8 @@ Currently, all users are allowed to make changes into the firebase and the chore
 <br/>
 
 ## Future Releases
-* 0.3.5 beta
-    * refactor the code to use TypeScript
+* 0.3.6 beta
+    * replace all 'any' types
 * 0.4
     * chores can be now set by the group
 * 0.5
@@ -37,7 +37,8 @@ Currently, all users are allowed to make changes into the firebase and the chore
 
 
 ## Release History
-* 0.3.2 beta
+* 0.3.5 beta
+    * refactor the code to use TypeScript
     * lists are private now and can be shared
 * 0.3.1 beta
     * setup, style login page
