@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {startRemoveItemAction} from '../redux/actions/actions';
+import {startRemoveItemAction2} from '../redux/actions/actions';
 import {Button, Row, Col} from 'react-bootstrap';
 
 export const BuyingListItem = (props) => (
@@ -12,7 +12,7 @@ export const BuyingListItem = (props) => (
                 <Button 
                 disabled={props.isOnline === false}
                 variant="outline-primary" className='button--deleteOption' onClick={() => {
-                    props.dispatch(startRemoveItemAction({id : props.item.id}));
+                    props.dispatch(startRemoveItemAction2({id : props.item.id}));
                 }}>Delete</Button>
             </Col>
         </Row>

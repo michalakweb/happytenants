@@ -14,13 +14,14 @@ import '../style.scss';
 
 
 //Redux
-import {startAddItemAction, startSetListAction, startSetListAction2, setListAction} from '../redux/actions/actions';
+import {startAddItemAction2, startSetListAction2, setListAction} from '../redux/actions/actions';
 import {store} from '../redux/store';
 import {connect} from 'react-redux';
 
 export class BuyingList extends Component {
   state = {
-    error: ''
+    error: '',
+    hasList: false
   }
 
   componentDidMount = () => {
@@ -37,7 +38,7 @@ export class BuyingList extends Component {
     const connectedRef = database.ref(".info/connected");
     connectedRef.on("value", (snap) => {
       if (snap.val() === true) {
-        this.props.dispatch(startSetListAction())
+        this.props.dispatch(startSetListAction2())
         .then(() => {
           this.setState(() => ({
             error: ''
@@ -62,6 +63,21 @@ export class BuyingList extends Component {
         }))
       }
     });
+
+    // Checking if the user has created a list already
+    let listAddress = '';
+    const user = firebase.auth().currentUser;
+    return database.ref(`users/${user.displayName}/list`)
+    .once('value', (snap) => {
+            listAddress = snap.val();
+    })
+    .then(() => {
+      if(listAddress !== null) {
+        this.setState(() => ({
+          hasList: true
+        }))
+      }
+    })
   }
 
   componentDidUpdate = () => {
@@ -73,6 +89,21 @@ export class BuyingList extends Component {
         }))
       }, 2000)
     };
+
+    // Checking if the user has created a list already
+    let listAddress = '';
+    const user = firebase.auth().currentUser;
+    return database.ref(`users/${user.displayName}/list`)
+    .once('value', (snap) => {
+            listAddress = snap.val();
+    })
+    .then(() => {
+      if(listAddress !== null) {
+        this.setState(() => ({
+          hasList: true
+        }))
+      }
+    })
 
   }
 
@@ -101,7 +132,7 @@ export class BuyingList extends Component {
         error: ''
       }));
 
-      this.props.dispatch(startAddItemAction(todoItem));
+      this.props.dispatch(startAddItemAction2(todoItem));
     }
   };
 
@@ -111,6 +142,21 @@ export class BuyingList extends Component {
       console.log(error);
     });
     
+  }
+
+  handleCreateList = () => {
+    const user = firebase.auth().currentUser;
+    database.ref(`lists`).push({'todoList': {
+      1: {
+        'description': 'First list entry'
+      }
+    }})
+    .then((snap) => {
+      database.ref(`users/${user.displayName}`).update({'list': snap.key});
+    }) 
+    .then(() => {
+      this.props.dispatch(startSetListAction2())
+    })
   }
 
   render() {
@@ -141,10 +187,10 @@ export class BuyingList extends Component {
                       <Row>
                         <Col className='my-2'>
                         {/* Preventing users from submitting, depending on their Internet connection AND
-                            if they're logged in */}
+                            if they created a list */}
                           <Online>
                             <Form.Control autoComplete='off' type="text" name='todoItem' 
-                            placeholder="Type your option here." disabled={false}/>
+                            placeholder="Type your option here." disabled={!this.state.hasList}/>
                           </Online>
                           <Offline>
                             <Form.Control autoComplete='off' type="text" name='todoItem' 
@@ -154,7 +200,7 @@ export class BuyingList extends Component {
                       </Row> 
                       <Row>
                         <Col className='my-2'>
-                          <Online><Button disabled={false} block variant="primary" type="submit">
+                          <Online><Button disabled={!this.state.hasList} block variant="primary" type="submit">
                           Add task</Button>
                           </Online>
                           <Offline><Button disabled block variant="primary" type="submit">
@@ -173,28 +219,16 @@ export class BuyingList extends Component {
                   </Alert>
                 }
 
-                <Button onClick={() => firebase.auth().signOut()}>Logout</Button> 
-
-                {//move to separate function
-                  // reroute all actions to new list
-                  // check places where nw lists are being created and pulled
-                  // add "load list from another user button"
+                {
+                  // for testing purposes
+                  // <Button onClick={() => firebase.auth().signOut()}>Logout</Button> 
                 }
-                <Button onClick={() => {
-                  const user = firebase.auth().currentUser;
-                  
-                  database.ref(`lists`).push({'todoList': {
-                    1: {
-                      'description': 'Bimbla '
-                    }
-                  }})
-                  .then((snap) => {
-                    database.ref(`users/${user.displayName}`).update({'list': snap.key});
-                  }) 
-                  .then(() => {
-                    this.props.dispatch(startSetListAction2())
-                  })
-                }}>Add List</Button>
+
+                {
+                  // When the user doesn't have a list, he has to create it first
+                  !this.state.hasList && 
+                  <Button block variant="success" onClick={this.handleCreateList}>Create List</Button>
+                }
           </Container>
 
           <BottomNav/>

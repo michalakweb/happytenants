@@ -35,6 +35,31 @@ export const startAddItemAction = (itemData) => {
         });
     };
 };
+
+export const startAddItemAction2 = (itemData) => {
+    return (dispatch) => {
+        const item = { description: itemData };
+        let listAddress = '';
+        const user = firebase.auth().currentUser;
+        database.ref(`users/${user.displayName}/list`)
+        .once('value', (snap) => {
+            listAddress = snap.val();
+        })
+        .then(() => {
+            return database.ref(`lists/${listAddress}/todoList`).push(item)
+            .then((ref) => {
+            dispatch(addItemAction({
+                id: ref.key, 
+                ...item
+            }));
+
+            const myJSON = JSON.stringify(store.getState());
+            localStorage.setItem('listItems', myJSON);
+        });
+        })
+        
+    };
+};
   
 
 const removeItemAction = ({id}) => ({
@@ -51,6 +76,26 @@ export const startRemoveItemAction = ({id}) => {
             const myJSON = JSON.stringify(store.getState());
             localStorage.setItem('listItems', myJSON);
         });
+    };
+};
+
+export const startRemoveItemAction2 = ({id}) => {
+    return (dispatch) => {
+        let listAddress = '';
+        const user = firebase.auth().currentUser;
+        database.ref(`users/${user.displayName}/list`)
+        .once('value', (snap) => {
+            listAddress = snap.val();
+        })
+        .then(() => {
+            return database.ref(`lists/${listAddress}/todoList/${id}`).remove()
+            .then(() => {
+                dispatch(removeItemAction({id}));
+                const myJSON = JSON.stringify(store.getState());
+                localStorage.setItem('listItems', myJSON);
+            });
+        })
+        
     };
 };
 
@@ -87,7 +132,7 @@ export const startSetListAction2 = () => {
     return (dispatch) => {
         let listAddress = '';
         const user = firebase.auth().currentUser;
-        database.ref(`users/${user.displayName}/list`)
+        return database.ref(`users/${user.displayName}/list`)
         .once('value', (snap) => {
             listAddress = snap.val();
         })
