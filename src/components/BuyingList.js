@@ -14,14 +14,17 @@ import '../style.scss';
 
 
 //Redux
-import {startAddItemAction2, startSetListAction2, setListAction} from '../redux/actions/actions';
+import {startAddItemAction, startSetListAction, setListAction } from '../redux/actions/actions';
 import {store} from '../redux/store';
 import {connect} from 'react-redux';
 
 export class BuyingList extends Component {
   state = {
     error: '',
-    hasList: false
+    hasList: false,
+    listAddress: null,
+    listAddressVisible: false,
+    joinListVisible: false
   }
 
   componentDidMount = () => {
@@ -38,7 +41,7 @@ export class BuyingList extends Component {
     const connectedRef = database.ref(".info/connected");
     connectedRef.on("value", (snap) => {
       if (snap.val() === true) {
-        this.props.dispatch(startSetListAction2())
+        this.props.dispatch(startSetListAction())
         .then(() => {
           this.setState(() => ({
             error: ''
@@ -74,7 +77,9 @@ export class BuyingList extends Component {
     .then(() => {
       if(listAddress !== null) {
         this.setState(() => ({
-          hasList: true
+          hasList: true,
+          listAddress: listAddress,
+          joinListVisible: false
         }))
       }
     })
@@ -100,7 +105,9 @@ export class BuyingList extends Component {
     .then(() => {
       if(listAddress !== null) {
         this.setState(() => ({
-          hasList: true
+          hasList: true,
+          listAddress: listAddress,
+          joinListVisible: false
         }))
       }
     })
@@ -132,7 +139,7 @@ export class BuyingList extends Component {
         error: ''
       }));
 
-      this.props.dispatch(startAddItemAction2(todoItem));
+      this.props.dispatch(startAddItemAction(todoItem));
     }
   };
 
@@ -155,9 +162,55 @@ export class BuyingList extends Component {
       database.ref(`users/${user.displayName}`).update({'list': snap.key});
     }) 
     .then(() => {
-      this.props.dispatch(startSetListAction2())
+      this.props.dispatch(startSetListAction())
     })
   }
+
+  handleShareList = () => {
+    this.setState((prevState) => ({
+      listAddressVisible: !prevState.listAddressVisible
+    }))
+  }
+
+  handleJoinListVisible = () => {
+    this.setState((prevState) => ({
+      joinListVisible: !prevState.joinListVisible
+    }))
+  }
+
+  handleJoinList = (e) => {
+    e.preventDefault();
+    let list = e.target.elements.newList.value.trim();
+    e.target.elements.newList.value = '';
+
+    // A set of checks to prevent invalid submissions
+
+    if(typeof list !== "string" || list === '' || list.length > 120) {
+      this.setState(() => ({
+        error: 'Submission has more than 120 characters or is blank. Try again.'
+      }));
+    }
+
+    else {
+      firebase.database().ref("lists").once("value")
+      .then((snap) => {
+        if (snap.child(`${list}`).exists()) {
+          const user = firebase.auth().currentUser;
+          return database.ref(`users/${user.displayName}`).update({'list': list})
+          .then(() => {
+          this.props.dispatch(startSetListAction())
+          })
+        }
+
+        else {
+          this.setState(() => ({
+            error: `This list doesn't exist.`
+          }))
+        }
+      })
+
+    }
+};
 
   render() {
     return (
@@ -225,10 +278,61 @@ export class BuyingList extends Component {
                 }
 
                 {
-                  // When the user doesn't have a list, he has to create it first
+                  // When the user doesn't have a list, he has to create it first or share somebody's list
                   !this.state.hasList && 
-                  <Button block variant="success" onClick={this.handleCreateList}>Create List</Button>
+                  (<div>
+                    <Row>
+                      <Col>
+                        <Button block variant="outline-success" onClick={this.handleCreateList}>Create List</Button>
+                      </Col>
+                      <Col xs={1} className='align-self-center'>OR</Col>
+                      <Col>
+                        <Button block variant="outline-info" onClick={this.handleJoinListVisible}>Join your friend's list</Button>
+                      </Col>
+                    </Row>
+                    {this.state.joinListVisible && 
+                        <Form onSubmit={this.handleJoinList}>
+                            <Online>
+                              <Col className='my-2'>
+                                <Form.Control autoComplete='off' type="text" name='newList' 
+                                placeholder="Type list ID"/>
+                              </Col>
+                              <Col className='my-2'>
+                                <Button  block variant="primary" type="submit">
+                                Join</Button>
+                              </Col>
+                            </Online>
+                            <Offline>
+                              <p>You need Internet to join a list</p>
+                            </Offline>
+                        </Form>
+                    }
+                  </div>)
                 }
+                {
+                  // When the user has a list, he can share it with others via list id
+                  this.state.hasList && 
+                  (
+                    <div>
+                      <Row>
+                        <Col>
+                          <Button block variant="outline-success" onClick={this.handleShareList}>Share your list</Button>
+                        </Col>
+                      </Row>
+                      {this.state.listAddressVisible && (
+                        <Row>
+                          <Col>
+                            <Alert className='mt-2' variant='warning'>{this.state.listAddress}</Alert>
+                            <p>Copy this address and send it to your friend/family.</p>
+                            <p>When they login, they can join your list!</p>
+                          </Col>
+                        </Row>
+                      ) }
+                    </div>
+                  )
+                }
+
+                
           </Container>
 
           <BottomNav/>

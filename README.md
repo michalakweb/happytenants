@@ -14,9 +14,8 @@ Currently, all users are allowed to make changes into the firebase and the chore
 <br/>
 
 ## Future Releases
-* 0.3.2 beta
-    * making data private to groups
-    * demo link
+* 0.3.5 beta
+    * refactor the code to use TypeScript
 * 0.4
     * chores can be now set by the group
 * 0.5
@@ -38,6 +37,8 @@ Currently, all users are allowed to make changes into the firebase and the chore
 
 
 ## Release History
+* 0.3.2 beta
+    * lists are private now and can be shared
 * 0.3.1 beta
     * setup, style login page
     * integrate auth info with redux
