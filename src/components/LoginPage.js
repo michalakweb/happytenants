@@ -7,7 +7,7 @@ import 'firebase/auth';
 
 // Bootstrap & styles
 import 'bootstrap/dist/css/bootstrap.css';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Alert } from 'react-bootstrap';
 import '../style.scss';
 
 
@@ -20,6 +20,8 @@ const LoginPage = () => (
                     <div className="d-flex justify-content-center pt-4 mb-3 w-100">
                         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
                     </div>
+                    <Alert variant="warning">If you're having problems with the first option, 
+                    sign in using "Sign in with email"</Alert>
                 </Col>
             </Row>
         </Container>
