@@ -16,14 +16,17 @@ Currently, all users are allowed to make changes into the firebase and the chore
 ## Future Releases
 * 0.3.6 beta
     * replace all 'any' types
+    * add some addditional localStorage key/values in todoList
 * 0.4
-    * chores can be now set by the group
-* 0.5
-    * other languages 
-* 0.6
-    * improve styling
+    * improve styling for Login Page
     * GoogleFonts for React (?)
+* 0.5
+    * refactor code - further separate login from presentation + template components
+* 0.6
+    * chores can be now set by the group
+    * other languages 
 * 0.7 
+    * type-checking in all files
     * more complex testing
 * 0.8
     * UI tips for new users
