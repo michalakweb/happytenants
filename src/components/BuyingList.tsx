@@ -17,7 +17,7 @@ import '../style.scss';
 import {startAddItemAction, startSetListAction, setListAction } from '../redux/actions/actions';
 import {store} from '../redux/store';
 import {connect} from 'react-redux';
-import { any } from 'prop-types';
+
 
 interface Props {
   dispatch: any;
@@ -27,17 +27,23 @@ interface Props {
 interface State {
   error: string;
   hasList: boolean;
-  listAddress: any;
+  listAddress: string;
   listAddressVisible: boolean;
   joinListVisible: boolean;
   user: string;
+}
+
+type ReduxTodoItem = any;
+
+type Item = {
+  id: string;
 }
 
 export class BuyingList extends React.Component<Props, State> {
   state: State = {
     error: '',
     hasList: false,
-    listAddress: null,
+    listAddress: '',
     listAddressVisible: false,
     joinListVisible: false,
     user: ''
@@ -144,7 +150,7 @@ export class BuyingList extends React.Component<Props, State> {
       }));
     }
 
-    else if(this.props.state.some((el: any) => el.description === todoItem)) {
+    else if(this.props.state.some((el: ReduxTodoItem) => el.description === todoItem)) {
       this.setState(() => ({
         error: 'This option already exists. Try again.'
       }));
@@ -258,7 +264,7 @@ export class BuyingList extends React.Component<Props, State> {
                         {/* Preventing users from submitting, depending on their Internet connection AND
                             if they created a list */}
                           <Online>
-                            <Form.Control autoComplete='off' type="text" name='todoItem' 
+                            <Form.Control id="todoItem" autoComplete='off' type="text" name='todoItem' 
                             placeholder="Type your option here." disabled={!this.state.hasList}/>
                           </Online>
                           <Offline>
@@ -362,7 +368,7 @@ export class BuyingList extends React.Component<Props, State> {
 // store.subscribe(() => console.log(store.getState()))
 store.subscribe(() => store.getState())
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: {todoList: Array<object>}) => ({
   state: state.todoList
 })
 
