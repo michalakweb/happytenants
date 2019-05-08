@@ -213,6 +213,8 @@ export class BuyingList extends React.Component<Props, State> {
       }));
     }
 
+    // Joining a list
+
     else {
       firebase.database().ref("lists").once("value")
       .then((snap) => {
@@ -301,34 +303,35 @@ export class BuyingList extends React.Component<Props, State> {
 
                 {
                   // When the user doesn't have a list, he has to create it first or share somebody's list
+                  // They can't perform these actions without an internet connection
                   !this.state.hasList && 
                   (<div>
-                    <Row>
-                      <Col>
-                        <Button block variant="outline-success" onClick={this.handleCreateList}>Create List</Button>
-                      </Col>
-                      <Col xs={1} className='align-self-center'>OR</Col>
-                      <Col>
-                        <Button block variant="outline-info" onClick={this.handleJoinListVisible}>Join your friend's list</Button>
-                      </Col>
-                    </Row>
-                    {this.state.joinListVisible && 
-                        <Form onSubmit={this.handleJoinList}>
-                            <Online>
-                              <Col className='my-2'>
-                                <Form.Control autoComplete='off' type="text" name='newList' 
-                                placeholder="Type list ID"/>
-                              </Col>
-                              <Col className='my-2'>
-                                <Button  block variant="primary" type="submit">
-                                Join</Button>
-                              </Col>
-                            </Online>
-                            <Offline>
-                              <p>You need Internet to join a list</p>
-                            </Offline>
-                        </Form>
-                    }
+                    <Online>
+                      <Row>
+                        <Col>
+                          <Button block variant="outline-success" onClick={this.handleCreateList}>Create List</Button>
+                        </Col>
+                        <Col xs={1} className='align-self-center'>OR</Col>
+                        <Col>
+                          <Button block variant="outline-info" onClick={this.handleJoinListVisible}>Join your friend's list</Button>
+                        </Col>
+                      </Row>
+                      {this.state.joinListVisible && 
+                          <Form onSubmit={this.handleJoinList}>
+                                <Col className='my-2'>
+                                  <Form.Control autoComplete='off' type="text" name='newList' 
+                                  placeholder="Type list ID"/>
+                                </Col>
+                                <Col className='my-2'>
+                                  <Button  block variant="primary" type="submit">
+                                  Join</Button>
+                                </Col>
+                          </Form>
+                      }
+                    </Online>
+                    <Offline>
+                      <Alert variant="warning">You need to connect to the Internet to join or add a new list.</Alert>
+                    </Offline>
                   </div>)
                 }
                 {
