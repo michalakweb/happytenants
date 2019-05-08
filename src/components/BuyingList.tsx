@@ -27,7 +27,7 @@ interface Props {
 interface State {
   error: string;
   hasList: boolean;
-  listAddress: string;
+  listAddress: string | null;
   listAddressVisible: boolean;
   joinListVisible: boolean;
   user: string;
@@ -90,21 +90,39 @@ export class BuyingList extends React.Component<Props, State> {
     });
 
     // Checking if the user has created a list already
-    let listAddress = '';
-    const user: any = firebase.auth().currentUser;
-    return database.ref(`users/${user.displayName}/list`)
-    .once('value', (snap) => {
-            listAddress = snap.val();
-    })
-    .then(() => {
-      if(listAddress !== null) {
-        this.setState(() => ({
-          hasList: true,
-          listAddress: listAddress,
-          joinListVisible: false
-        }))
-      }
-    })
+    // If has, then information will be loaded from localStorage
+    // If there is no info in localStorage, firebase will be called and
+    // data will be saved in localStorage
+    
+    const listAddress: any = localStorage.getItem('listAddress');
+
+    if(listAddress !== null && listAddress.length > 5) {
+      console.log('robie');
+      this.setState(() => ({
+        hasList: true,
+        listAddress: listAddress,
+      }))
+    } else {
+      let listAddress = '';
+      const user: any = firebase.auth().currentUser;
+      return database.ref(`users/${user.displayName}/list`)
+      .once('value', (snap) => {
+              listAddress = snap.val();
+      })
+      .then(() => {
+        if(listAddress !== null && listAddress.length > 5) {
+          console.log(typeof listAddress);
+          this.setState(() => ({
+            hasList: true,
+            listAddress: listAddress,
+            joinListVisible: false
+          }))
+
+          localStorage.setItem('listAddress', listAddress);
+
+        }
+      })
+    }
   }
 
   componentDidUpdate = () => {
@@ -116,24 +134,6 @@ export class BuyingList extends React.Component<Props, State> {
         }))
       }, 2000)
     };
-
-    // Checking if the user has created a list already
-    let listAddress = '';
-    const user: any = firebase.auth().currentUser;
-    return database.ref(`users/${user.displayName}/list`)
-    .once('value', (snap) => {
-            listAddress = snap.val();
-    })
-    .then(() => {
-      if(listAddress !== null) {
-        this.setState(() => ({
-          hasList: true,
-          listAddress: listAddress,
-          joinListVisible: false
-        }))
-      }
-    })
-
   }
 
   handleAdd = (e: any) => {
@@ -185,6 +185,11 @@ export class BuyingList extends React.Component<Props, State> {
     }) 
     .then(() => {
       this.props.dispatch(startSetListAction())
+      .then(() => {
+        this.setState(() => ({
+          hasList: true
+        }))
+      })
     })
   }
 
@@ -223,6 +228,11 @@ export class BuyingList extends React.Component<Props, State> {
           return database.ref(`users/${user.displayName}`).update({'list': list})
           .then(() => {
           this.props.dispatch(startSetListAction())
+          .then(() => {
+            this.setState(() => ({
+              hasList: true
+            }))
+          })
           })
         }
 

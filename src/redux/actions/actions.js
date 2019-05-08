@@ -102,6 +102,7 @@ export const startSetListAction = () => {
                 dispatch(setListAction(listItems));
                 const myJSON = JSON.stringify(listItems);
                 localStorage.setItem('listItems', myJSON);
+                localStorage.setItem('listAddress', listAddress);
             });
         })
     };
