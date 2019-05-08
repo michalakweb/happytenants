@@ -14,23 +14,22 @@ Currently, all users are allowed to make changes into the firebase and the chore
 <br/>
 
 ## Future Releases 
-* 0.4 beta
+* 0.3.6 beta
     * improve styling for Login Page
     * GoogleFonts for React (?)
+* 0.4
+    * refactor code - further separate logic from presentation + template components
 * 0.5
-    * refactor code - further separate login from presentation + template components
-* 0.6
     * chores can be now set by the group
     * other languages 
-* 0.7 
+* 0.6 
     * type-checking in all files
     * more complex testing
-* 0.8
+* 0.7
     * UI tips for new users
-* 0.9
+* 0.8
     * push notifications
-* 1.0
-    * Public release
+
 
 
 <br/>
