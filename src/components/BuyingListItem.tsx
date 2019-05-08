@@ -5,11 +5,11 @@ import {Button, Row, Col} from 'react-bootstrap';
 
 interface Props {
     item: {
-        description: string;
-        id: number;
+        description?: string;
+        id?: number;
     };
     isOnline: boolean;
-    dispatch: any;
+    dispatch: Function;
 }
 
 export const BuyingListItem: React.FunctionComponent<Props> = (props) => (

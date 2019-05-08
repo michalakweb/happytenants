@@ -19,10 +19,16 @@ import {store} from '../redux/store';
 import {connect} from 'react-redux';
 
 
+// 
+// Types 
+//
+
+// React & Redux
 interface Props {
-  dispatch: any;
+  dispatch: Function;
   state: Array<object>;
 }
+
 
 interface State {
   error: string;
@@ -33,11 +39,15 @@ interface State {
   user: string;
 }
 
-type ReduxTodoItem = any;
 
-type Item = {
-  id: string;
-}
+// Firebase
+type firebaseUser = firebase.User | null;
+type firebaseSnapshot = firebase.database.DataSnapshot | null;
+
+
+// 
+// Component
+// 
 
 export class BuyingList extends React.Component<Props, State> {
   state: State = {
@@ -61,8 +71,8 @@ export class BuyingList extends React.Component<Props, State> {
     }
 
     const connectedRef = database.ref(".info/connected");
-    connectedRef.on("value", (snap: any) => {
-      if (snap.val() === true) {
+    connectedRef.on("value", (snapshot: firebaseSnapshot) => {
+      if (snapshot!.val() === true) {
         this.props.dispatch(startSetListAction())
         .then(() => {
           this.setState(() => ({
@@ -94,7 +104,7 @@ export class BuyingList extends React.Component<Props, State> {
     // If there is no info in localStorage, firebase will be called and
     // data will be saved in localStorage
     
-    const listAddress: any = localStorage.getItem('listAddress');
+    const listAddress: string | null = localStorage.getItem('listAddress');
 
     if(listAddress !== null && listAddress.length > 5) {
       this.setState(() => ({
@@ -103,8 +113,8 @@ export class BuyingList extends React.Component<Props, State> {
       }))
     } else {
       let listAddress = '';
-      const user: any = firebase.auth().currentUser;
-      return database.ref(`users/${user.displayName}/list`)
+      const user: firebaseUser = firebase.auth().currentUser;
+      return database.ref(`users/${user!.displayName}/list`)
       .once('value', (snap) => {
               listAddress = snap.val();
       })
@@ -135,11 +145,11 @@ export class BuyingList extends React.Component<Props, State> {
     };
   }
 
-  handleAdd = (e: any) => {
+  handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let todoItem = e.target.elements.todoItem.value.trim();
-    e.target.elements.todoItem.value = '';
-    e.target.elements.todoItem.focus();
+    let todoItem = (document.querySelector('#todoItem') as HTMLInputElement).value.trim();
+    (document.querySelector('#todoItem') as HTMLInputElement).value = '';
+    (document.querySelector('#todoItem') as HTMLInputElement).focus();
 
     // A set of checks to prevent duplicate or invalid submissions
 
@@ -149,7 +159,7 @@ export class BuyingList extends React.Component<Props, State> {
       }));
     }
 
-    else if(this.props.state.some((el: ReduxTodoItem) => el.description === todoItem)) {
+    else if(this.props.state.some((el: {description?: string}) => el.description === todoItem)) {
       this.setState(() => ({
         error: 'This option already exists. Try again.'
       }));
@@ -173,14 +183,18 @@ export class BuyingList extends React.Component<Props, State> {
   }
 
   handleCreateList = () => {
-    const user: any = firebase.auth().currentUser;
+    
     database.ref(`lists`).push({'todoList': {
       1: {
         'description': 'First list entry'
       }
     }})
     .then((snap) => {
-      database.ref(`users/${user.displayName}`).update({'list': snap.key});
+      const user: firebaseUser = firebase.auth().currentUser;
+      database.ref(`users/${user!.displayName}`).update({'list': snap.key});
+      this.setState(() => ({
+        listAddress: snap.key
+      }))
     }) 
     .then(() => {
       this.props.dispatch(startSetListAction())
@@ -204,10 +218,11 @@ export class BuyingList extends React.Component<Props, State> {
     }))
   }
 
-  handleJoinList = (e: any) => {
+  handleJoinList = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let list = e.target.elements.newList.value.trim();
-    e.target.elements.newList.value = '';
+    let list = (document.querySelector('#newList') as HTMLInputElement).value.trim();
+    (document.querySelector('#newList') as HTMLInputElement).value = '';
+    (document.querySelector('#newList') as HTMLInputElement).focus();
 
     // A set of checks to prevent invalid submissions
 
@@ -223,8 +238,8 @@ export class BuyingList extends React.Component<Props, State> {
       firebase.database().ref("lists").once("value")
       .then((snap) => {
         if (snap.child(`${list}`).exists()) {
-          const user: any = firebase.auth().currentUser;
-          return database.ref(`users/${user.displayName}`).update({'list': list})
+          const user: firebaseUser = firebase.auth().currentUser;
+          return database.ref(`users/${user!.displayName}`).update({'list': list})
           .then(() => {
           this.props.dispatch(startSetListAction())
           .then(() => {
@@ -261,11 +276,17 @@ export class BuyingList extends React.Component<Props, State> {
 
                   <Offline>
                   {!this.props.state.length ? <p className='lead py-4 mb-0'>Currently nothing on the list</p> :
-                  this.props.state.map((item: any) => <ReduxedBuyingListItem isOnline={false} key={item.id} item={item}/>)}
+                  this.props.state.map((item: {
+                    id?: number;
+                    description?: string;
+                  }) => <ReduxedBuyingListItem isOnline={false} key={item.id} item={item}/>)}
                   </Offline>
                   <Online>
                   {!this.props.state.length ? <p className='lead py-4 mb-0'>Currently nothing on the list</p> :
-                  this.props.state.map((item: any) => 
+                  this.props.state.map((item: {
+                    id?: number;
+                    description?: string;
+                  }) => 
                     <ReduxedBuyingListItem key={item.id} item={item} isOnline={true}/>)}
                   </Online>
                 
@@ -329,7 +350,7 @@ export class BuyingList extends React.Component<Props, State> {
                       {this.state.joinListVisible && 
                           <Form onSubmit={this.handleJoinList}>
                                 <Col className='my-2'>
-                                  <Form.Control autoComplete='off' type="text" name='newList' 
+                                  <Form.Control id="newList" autoComplete='off' type="text" name='newList' 
                                   placeholder="Type list ID"/>
                                 </Col>
                                 <Col className='my-2'>
