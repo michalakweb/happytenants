@@ -97,7 +97,6 @@ export class BuyingList extends React.Component<Props, State> {
     const listAddress: any = localStorage.getItem('listAddress');
 
     if(listAddress !== null && listAddress.length > 5) {
-      console.log('robie');
       this.setState(() => ({
         hasList: true,
         listAddress: listAddress,
@@ -230,7 +229,8 @@ export class BuyingList extends React.Component<Props, State> {
           this.props.dispatch(startSetListAction())
           .then(() => {
             this.setState(() => ({
-              hasList: true
+              hasList: true,
+              listAddress: list
             }))
           })
           })
