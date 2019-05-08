@@ -38,6 +38,7 @@ Currently, all users are allowed to make changes into the firebase and the chore
 
 ## Release History
 * 0.3.5 beta
+    * fixed a few UI bugs
     * refactor the code to use TypeScript
     * lists are private now and can be shared
 * 0.3.1 beta
