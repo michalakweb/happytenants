@@ -25,8 +25,8 @@ import {isLoggedAction, notLoggedAction} from './redux/actions/actions';
 
 //Font Awesome and library
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faStroopwafel, faClipboardList, faBroom, faBath, faUtensils, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-library.add(faStroopwafel, faClipboardList, faBroom, faBath, faUtensils, faTrashAlt);
+import { faStroopwafel, faClipboardList, faBroom, faBath, faUtensils, faTrashAlt, faPlus, faShare } from '@fortawesome/free-solid-svg-icons'
+library.add(faStroopwafel, faClipboardList, faBroom, faBath, faUtensils, faTrashAlt, faPlus, faShare);
 
 //Hash History
 const hashHistory = createHashHistory({ basename: process.env.PUBLIC_URL });
@@ -80,4 +80,4 @@ firebase.auth().onAuthStateChanged(user => {
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register();

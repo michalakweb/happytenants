@@ -12,12 +12,6 @@
     padding: 0;
 }
 
-.container--list {
-    background-color: white;
-    flex: 1;
-    overflow: auto;
-}
-
 .container--login {
     max-width: 700px;
     height: 100vh;
@@ -32,6 +26,15 @@
 }
 
 // Row types
+
+.row--list {
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    overflow: auto;
+    margin: 0;
+    background-image: url(./img/doodles.png);
+}
 
 .row--chores {
     flex-grow: 1;
@@ -75,6 +78,12 @@
     margin: 0;
 }
 
+.col--todoForm {
+    flex-basis: 100%;
+    padding: 0;
+    margin: 0;
+}
+
 .col--login {
     flex-basis: 100%;
     min-height: 127px;
@@ -95,6 +104,26 @@
     height: 70px;
 }
 
+// Form To Do 
+.formTodo {
+    width: 100%;
+    display: flex;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.noRadius {
+    border-radius: 0;
+}
+
+.radius {
+    border-radius: 25px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
 // Header
 
 .header {
@@ -107,9 +136,29 @@
 
 // Colors
 
+.violet {
+    background-color: blueviolet;
+    color: white;
+    border-color: blueviolet;
+}
+
+.violet:hover {
+    background-color: rgb(104, 27, 175);
+    border-color: rgb(104, 27, 175);
+}
+
+.form-control:focus {
+    border-color: blueviolet;
+    box-shadow: 0 0 0 0.2rem rgba(174, 0, 255, 0.25)
+}
+
 .fontAwesomeIcon {
     display: inline-flex;
     color: blueviolet;
+}
+
+.fontAwesomeIcon--white {
+    color: white;
 }
 
 .p--nav {
@@ -120,6 +169,7 @@
 
 .optionText {
     word-wrap: break-word;
+    font-weight: 400;
 }
 
 a:hover {

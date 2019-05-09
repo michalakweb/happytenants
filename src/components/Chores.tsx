@@ -62,7 +62,7 @@ class Dashboard extends React.Component<State> {
                                     <FontAwesomeIcon className='fontAwesomeIcon px-2 ml-3' size='3x' icon="trash-alt" />
                                 </Col>
                                 <Col className='align-self-center'>
-                                    <p className='h4'> 
+                                    <p className='h4 text-center'> 
                                         {/* set of if/else statements to determine who has to do the chores */}
                                         {
                                         set1.includes(this.state.week) ? this.state.people[0] : 
@@ -77,7 +77,7 @@ class Dashboard extends React.Component<State> {
                                     <FontAwesomeIcon className='fontAwesomeIcon px-2 ml-1' size='3x' icon="broom" />
                                 </Col>
                                 <Col className='align-self-center'>
-                                    <p className='h4'>
+                                    <p className='h4 text-center'>
                                         {/* set of if/else statements to determine who has to do the chores */}
                                         {
                                         set2.includes(this.state.week) ? this.state.people[0] : 

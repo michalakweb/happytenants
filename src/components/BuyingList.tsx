@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Button, Form, Alert } from 'react-bootstrap';
 import '../style.scss';
 import logo from '../img/logo.png';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 //Redux
 import {startAddItemAction, startSetListAction, setListAction } from '../redux/actions/actions';
@@ -279,7 +279,7 @@ export class BuyingList extends React.Component<Props, State> {
               </Col>
           </Row>
 
-          <Container fluid={true} className='container--list'> 
+          <Row className='row--list'> 
                   {/* Disabling users from clicking on the buttons, depending on their Internet connection*/}
 
                   <Offline>
@@ -296,108 +296,114 @@ export class BuyingList extends React.Component<Props, State> {
                     description?: string;
                   }) => 
                     <ReduxedBuyingListItem key={item.id} item={item} isOnline={true}/>)}
-                  </Online>
-                
-                <div className='formTodo'>
-                    <Form onSubmit={this.handleAdd}>
-                      <Row>
-                        <Col className='my-2'>
-                        {/* Preventing users from submitting, depending on their Internet connection AND
-                            if they created a list */}
-                          <Online>
-                            <Form.Control id="todoItem" autoComplete='off' type="text" name='todoItem' 
-                            placeholder="Type your option here." disabled={!this.state.hasList}/>
-                          </Online>
-                          <Offline>
-                            <Form.Control autoComplete='off' type="text" name='todoItem' 
-                            placeholder="You're offline. Can't add/delete options" disabled={true}/>
-                          </Offline>
-                        </Col>
-                      </Row> 
-                      <Row>
-                        <Col className='my-2'>
-                          <Online><Button disabled={!this.state.hasList} block variant="primary" type="submit">
-                          Add task</Button>
-                          </Online>
-                          <Offline><Button disabled block variant="primary" type="submit">
-                          Add task</Button>
-                          </Offline>
-                        </Col>
-                      </Row>
-                     </Form>
-                </div>
-                                
-                {/* Error handling */}
-                {
-                  this.state.error.length !== 0 && 
-                  <Alert className='mt-3 mb-2' variant='warning'>
-                    {this.state.error}
-                  </Alert>
-                }
+                  </Online>    
+          </Row>
 
-                {
-                  // for testing purposes
-                  // <Button onClick={() => firebase.auth().signOut()}>Logout</Button> 
-                }
-
-                {
-                  // When the user doesn't have a list, he has to create it first or share somebody's list
-                  // They can't perform these actions without an internet connection
-                  !this.state.hasList && 
-                  (<div>
-                    <Online>
-                      <Row>
-                        <Col>
-                          <Button block variant="outline-success" onClick={this.handleCreateList}>Create List</Button>
-                        </Col>
-                        <Col xs={1} className='align-self-center'>OR</Col>
-                        <Col>
-                          <Button block variant="outline-info" onClick={this.handleJoinListVisible}>Join your friend's list</Button>
-                        </Col>
-                      </Row>
-                      {this.state.joinListVisible && 
-                          <Form onSubmit={this.handleJoinList}>
-                                <Col className='my-2'>
-                                  <Form.Control id="newList" autoComplete='off' type="text" name='newList' 
-                                  placeholder="Type list ID"/>
-                                </Col>
-                                <Col className='my-2'>
-                                  <Button  block variant="primary" type="submit">
-                                  Join</Button>
-                                </Col>
-                          </Form>
+          <Row className='row--zero'>
+                    {
+                    // When the user has a list, he can share it with others via list id
+                    this.state.hasList && 
+                    (
+                        <Row className='row--zero'>
+                          <Col className='col--todoForm'>
+                            <Button variant="primary" className='violet radius'
+                            onClick={this.handleShareList}>
+                              <FontAwesomeIcon className='fontAwesomeIcon--white mr-2' icon="share" />
+                              Share
+                            </Button>
+                          </Col>
+                        
+                        {this.state.listAddressVisible && (
+                            <Col className='col--todoForm'>
+                              <Alert className='mt-2' variant='warning'>{this.state.listAddress}</Alert>
+                              <p className='px-2'>Copy this address and send it to your friend/family.</p>
+                              <p className='px-2'>When they login, they can join your list!</p>
+                            </Col>
+                        ) }
+                        </Row>
+                      )
                       }
-                    </Online>
-                    <Offline>
-                      <Alert variant="warning">You need to connect to the Internet to join or add a new list.</Alert>
-                    </Offline>
-                  </div>)
-                }
-                {
-                  // When the user has a list, he can share it with others via list id
-                  this.state.hasList && 
-                  (
-                    <div>
-                      <Row>
-                        <Col>
-                          <Button block variant="outline-success" onClick={this.handleShareList}>Share your list</Button>
-                        </Col>
-                      </Row>
-                      {this.state.listAddressVisible && (
-                        <Row>
-                          <Col>
-                            <Alert className='mt-2' variant='warning'>{this.state.listAddress}</Alert>
-                            <p>Copy this address and send it to your friend/family.</p>
-                            <p>When they login, they can join your list!</p>
+                      <Form onSubmit={this.handleAdd} className='formTodo'>
+                            <Col xs={10} className='col--todoForm'>
+                            {/* Preventing users from submitting, depending on their Internet connection AND
+                                if they created a list */}
+                              <Online>
+                                <Form.Control id="todoItem" autoComplete='off' type="text" name='todoItem' 
+                                className='noRadius'
+                                placeholder="Type your option here." disabled={!this.state.hasList}/>
+                              </Online>
+                              <Offline>
+                                <Form.Control autoComplete='off' type="text" name='todoItem' 
+                                className='noRadius'
+                                placeholder="You're offline. Can't add/delete options" disabled={true}/>
+                              </Offline>
+                            </Col>
+                        
+                            {/* Add button */}
+                            <Col xs={2} className='col--todoForm'>
+                              <Online>
+                                <Button disabled={!this.state.hasList} className='noRadius violet'
+                              block variant="primary" type="submit">
+                                  <FontAwesomeIcon className='fontAwesomeIcon--white' icon="plus" />
+                                </Button>
+                              </Online>
+                              <Offline>
+                                <Button disabled block variant="primary" type="submit" className='noRadius violet'> 
+                                  <FontAwesomeIcon className='fontAwesomeIcon--white' icon="plus" />
+                                </Button>
+                              </Offline>
+                            </Col>
+                      </Form>
+                                  
+                  {/* Error handling */}
+                  {
+                    this.state.error.length !== 0 && 
+                    <Alert className='my-1' variant='warning'>
+                      {this.state.error}
+                    </Alert>
+                  }
+
+                  {
+                    // for testing purposes
+                    // <Button onClick={() => firebase.auth().signOut()}>Logout</Button> 
+                  }
+
+                  {
+                    // When the user doesn't have a list, he has to create it first or share somebody's list
+                    // They can't perform these actions without an internet connection
+                    !this.state.hasList && 
+                    (<div className='width100'>
+                      <Online>
+                        <Row className='row--zero'>
+                          <Col xs={6} className='col--todoForm'>
+                            <Button block variant="outline-success" onClick={this.handleCreateList}>Create List</Button>
+                          </Col>
+                          <Col xs={6} className='col--todoForm'>
+                            <Button block variant="outline-info" onClick={this.handleJoinListVisible}>Join your friend's list</Button>
                           </Col>
                         </Row>
-                      ) }
-                    </div>
-                  )
-                }
+                        {this.state.joinListVisible && 
+                            <Form onSubmit={this.handleJoinList}>
+                                  <Col className='my-2'>
+                                    <Form.Control id="newList" autoComplete='off' type="text" name='newList' 
+                                    placeholder="Type list ID"/>
+                                  </Col>
+                                  <Col className='my-2'>
+                                    <Button  block variant="primary" type="submit">
+                                    Join</Button>
+                                  </Col>
+                            </Form>
+                        }
+                      </Online>
+                      <Offline>
+                        <Alert variant="warning">You need to connect to the Internet to join or add a 
+                        new list.</Alert>
+                      </Offline>
+                    </div>)
+                  }
+          </Row>
 
-                
-          </Container>
+
 
           <BottomNav/>
           
