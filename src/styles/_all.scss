@@ -94,7 +94,6 @@
     margin: 0 auto;
     max-width: 300px;
     max-height: 300px;
-    padding-right: 40px;
 }
 
 .logo--sm {
@@ -142,9 +141,15 @@
     border-color: blueviolet;
 }
 
-.violet:hover {
+.violet:hover, .violet:active {
+    background-color: rgb(104, 27, 175) !important;
+    border-color: rgb(104, 27, 175) !important;
+    box-shadow: 0 0 0 0.2rem rgba(174, 0, 255, 0.25) !important;
+}
+
+.violet:focus {
     background-color: rgb(104, 27, 175);
-    border-color: rgb(104, 27, 175);
+    box-shadow: 0 0 0 0.2rem rgba(174, 0, 255, 0.25)
 }
 
 .form-control:focus {

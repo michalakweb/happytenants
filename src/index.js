@@ -25,8 +25,9 @@ import {isLoggedAction, notLoggedAction} from './redux/actions/actions';
 
 //Font Awesome and library
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faStroopwafel, faClipboardList, faBroom, faBath, faUtensils, faTrashAlt, faPlus, faShare } from '@fortawesome/free-solid-svg-icons'
-library.add(faStroopwafel, faClipboardList, faBroom, faBath, faUtensils, faTrashAlt, faPlus, faShare);
+import { faStroopwafel, faClipboardList, faBroom, faBath, faUtensils, faTrashAlt, faPlus, faShare, faTimes } from '@fortawesome/free-solid-svg-icons'
+library.add(faStroopwafel, faClipboardList, faBroom, 
+    faBath, faUtensils, faTrashAlt, faPlus, faShare, faTimes);
 
 //Hash History
 const hashHistory = createHashHistory({ basename: process.env.PUBLIC_URL });

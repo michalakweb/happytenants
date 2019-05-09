@@ -71,22 +71,24 @@ export class BuyingList extends React.Component<Props, State> {
       this.props.dispatch(setListAction(listItems));
     }
 
-    const connectedRef = database.ref(".info/connected");
-    connectedRef.on("value", (snapshot: firebaseSnapshot) => {
-      if (snapshot!.val() === true) {
-        this.props.dispatch(startSetListAction())
-        .then(() => {
-          this.setState(() => ({
-            error: ''
-          }));
-        })
-        
-      } else {
-        this.setState(() => ({
-          error: `Updating the list...`
-        }));
-      }
-    });
+    else {
+        const connectedRef = database.ref(".info/connected");
+        connectedRef.on("value", (snapshot: firebaseSnapshot) => {
+          if (snapshot!.val() === true) {
+            this.props.dispatch(startSetListAction())
+            .then(() => {
+              this.setState(() => ({
+                error: ''
+              }));
+            })
+            
+          } else {
+            this.setState(() => ({
+              error: `Updating the list...`
+            }));
+          }
+        });
+    }
 
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -283,7 +285,10 @@ export class BuyingList extends React.Component<Props, State> {
                   {/* Disabling users from clicking on the buttons, depending on their Internet connection*/}
 
                   <Offline>
-                  {!this.props.state.length ? <p className='lead py-4 mb-0'>Currently nothing on the list</p> :
+                  {!this.props.state.length ? 
+
+                  <p className='lead py-4 px-2 mb-0'>Currently nothing on the list</p> :
+
                   this.props.state.map((item: {
                     id?: number;
                     description?: string;
