@@ -8,20 +8,21 @@ import 'firebase/auth';
 // Bootstrap & styles
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Alert } from 'react-bootstrap';
+import logo from '../img/logo.png';
 import '../style.scss';
 
 
 const LoginPage = () => (
     <div>
-        <Container fluid className='container--login d-flex align-items-center'>
-            <Row className='d-flex mx-auto'>
-                <Col >
-                    <h1 className='align-self-center text-center mb-5 container--login_h1'>Happy Tenants</h1>
-                    <div className="d-flex justify-content-center pt-4 mb-3 w-100">
-                        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
-                    </div>
-                    <Alert variant="warning">If you're having problems with the first option, 
-                    sign in using "Sign in with email"</Alert>
+        <Container className='container--login'> 
+            <Row className='row--login text-white'>
+                <Col className='align-self-center col--login animated bounceInLeft'>
+                    <img src={logo} alt='logo' className='logo animated pulse delay-2s slower' />
+                    <h1 className='text-center container--login_h1'>Happy Tenants</h1>
+                </Col>
+
+                <Col className='align-self-end col--login mb-4'>
+                    <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
                 </Col>
             </Row>
         </Container>

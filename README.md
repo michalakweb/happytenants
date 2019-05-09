@@ -14,9 +14,7 @@ Currently, all users are allowed to make changes into the firebase and the chore
 <br/>
 
 ## Future Releases 
-* 0.3.6 beta
-    * improve styling for Login Page
-    * GoogleFonts for React (?)
+
 * 0.4
     * refactor code - further separate logic from presentation + template components
 * 0.5
@@ -36,13 +34,16 @@ Currently, all users are allowed to make changes into the firebase and the chore
 
 
 ## Release History
-* 0.3.5 beta
+* 0.3.6 beta
+    * improved styling for Login Page
+    * fonts in css
+* 0.3.5
     * replaced all 'any' types
     * added some addditional localStorage key/values in todoList
     * fixed a few UI bugs
     * refactored the code to use TypeScript
     * lists are private now and can be shared
-* 0.3.1 beta
+* 0.3.1
     * setup, style login page
     * integrate auth info with redux
     * private/public routes

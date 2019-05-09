@@ -25,8 +25,9 @@ export const uiConfig = {
       firebase.auth.EmailAuthProvider.PROVIDER_ID,
     ],
     callbacks: {
-      // Avoid redirects after sign-in.
-      signInSuccessWithAuthResult: () => false
+      signInFailure: (error) => {
+        console.log(error);
+      }
     }
   };
 
