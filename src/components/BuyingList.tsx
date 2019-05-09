@@ -71,24 +71,22 @@ export class BuyingList extends React.Component<Props, State> {
       this.props.dispatch(setListAction(listItems));
     }
 
-    else {
-        const connectedRef = database.ref(".info/connected");
-        connectedRef.on("value", (snapshot: firebaseSnapshot) => {
-          if (snapshot!.val() === true) {
-            this.props.dispatch(startSetListAction())
-            .then(() => {
-              this.setState(() => ({
-                error: ''
-              }));
-            })
-            
-          } else {
-            this.setState(() => ({
-              error: `Updating the list...`
-            }));
-          }
-        });
-    }
+    const connectedRef = database.ref(".info/connected");
+    connectedRef.on("value", (snapshot: firebaseSnapshot) => {
+      if (snapshot!.val() === true) {
+        this.props.dispatch(startSetListAction())
+        .then(() => {
+          this.setState(() => ({
+            error: ''
+          }));
+        })
+        
+      } else {
+        this.setState(() => ({
+          error: `Updating the list...`
+        }));
+      }
+    });
 
     firebase.auth().onAuthStateChanged(user => {
       if (user) {

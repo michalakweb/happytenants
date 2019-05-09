@@ -91,9 +91,11 @@
 
 // Logo
 .logo {
+    display: block;
     margin: 0 auto;
     max-width: 300px;
     max-height: 300px;
+    padding-right: 40px;
 }
 
 .logo--sm {
