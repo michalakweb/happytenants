@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import '../style.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import logo from '../img/logo.png';
 
 
 // Setting the locale to pl, to have Monday as first day of the week
@@ -39,47 +40,56 @@ class Dashboard extends React.Component<State> {
     render() {
         return (
             <div>
-                <Container className='container container--main text-center'>
-                    <Row>
-                        <Col className='px-0 mb-4'>
-                            <h1 className="display-4 py-4 header">This weeks's cleaning:</h1>
+                <Container className='container--main'>
+                    {/* <div className='row--chores-img'></div> */}
+                    <Row className='row--nav'>
+                        <Col className='col--chores'>
+                            <Row className='row--nav'>
+                                <Col className='px-0 mx-1 col--logo'>
+                                    <img src={logo} alt='logo' className='logo--sm' />
+                                </Col>
+                                <Col className='px-0 align-self-center ml-3'>
+                                    <h1 className="display-4 header">Chores</h1>
+                                </Col>
+                            </Row>
                         </Col>
                     </Row>
-                    <Container className='container--list'>
-                        <Row className='py-5'>
-                            <Col xs={6}>
-                                <FontAwesomeIcon className='fontAwesomeIcon px-2' size='3x' icon="utensils" />
-                                <FontAwesomeIcon className='fontAwesomeIcon px-2' size='3x' icon="trash-alt" />
-                            </Col>
-                            <Col className='align-self-center'>
-                                <p className='h4'> 
-                                    {/* set of if/else statements to determine who has to do the chores */}
-                                    {
-                                    set1.includes(this.state.week) ? this.state.people[0] : 
-                                    (set3.includes(this.state.week) ? this.state.people[1] : this.state.people[2])
-                                    }
-                                </p>
-                            </Col>
-                        </Row>
-                        <Row className='py-5'>
-                            <Col xs={6} className=''>
-                                <FontAwesomeIcon className='fontAwesomeIcon px-2' size='3x' icon="bath" />
-                                <FontAwesomeIcon className='fontAwesomeIcon px-2' size='3x' icon="broom" />
-                            </Col>
-                            <Col className='align-self-center'>
-                                <p className='h4'>
-                                    {/* set of if/else statements to determine who has to do the chores */}
-                                    {
-                                    set2.includes(this.state.week) ? this.state.people[0] : 
-                                    (set1.includes(this.state.week) ? this.state.people[1] : this.state.people[2])
-                                    }
-                                </p>
-                            </Col>
-                        </Row>
-                    </Container>
-                   
-                    <BottomNav/>
-                    
+                    <Row className='row--chores'>
+                        <Col className='col--chores'>
+                            <Row className='row--zero my-4'> 
+                                <Col xs={6}>
+                                    <FontAwesomeIcon className='fontAwesomeIcon px-2 ml-1' size='3x' icon="utensils" />
+                                    <FontAwesomeIcon className='fontAwesomeIcon px-2 ml-3' size='3x' icon="trash-alt" />
+                                </Col>
+                                <Col className='align-self-center'>
+                                    <p className='h4'> 
+                                        {/* set of if/else statements to determine who has to do the chores */}
+                                        {
+                                        set1.includes(this.state.week) ? this.state.people[0] : 
+                                        (set3.includes(this.state.week) ? this.state.people[1] : this.state.people[2])
+                                        }
+                                    </p>
+                                </Col>
+                            </Row>
+                            <Row className='row--zero my-4'>
+                                <Col xs={6}>
+                                    <FontAwesomeIcon className='fontAwesomeIcon px-2 ml-1' size='3x' icon="bath" />
+                                    <FontAwesomeIcon className='fontAwesomeIcon px-2 ml-1' size='3x' icon="broom" />
+                                </Col>
+                                <Col className='align-self-center'>
+                                    <p className='h4'>
+                                        {/* set of if/else statements to determine who has to do the chores */}
+                                        {
+                                        set2.includes(this.state.week) ? this.state.people[0] : 
+                                        (set1.includes(this.state.week) ? this.state.people[1] : this.state.people[2])
+                                        }
+                                    </p>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                    <BottomNav/> 
+                       
                 </Container>
             </div>
         );

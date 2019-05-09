@@ -1,8 +1,7 @@
 // Container types
 
 .container {
-    background-color: rgb(192, 185, 177);
-    
+    background-color: rgb(238, 234, 231);
 }
 
 .container--main {
@@ -10,13 +9,12 @@
     height: 100vh;
     flex-direction: column;
     display: flex;
+    padding: 0;
 }
 
 .container--list {
     background-color: white;
-    border-radius: 6px;
     flex: 1;
-    margin-bottom: 100px;
     overflow: auto;
 }
 
@@ -35,11 +33,47 @@
 
 // Row types
 
+.row--chores {
+    flex-grow: 1;
+    padding: 0;
+    margin: 0;
+    background-image: url(./img/doodles.png);
+}
+
+.row--zero {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.row--nav {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: blueviolet;
+}
+
 .row--login {
     height: 100vh;
 }
 
 // Column types 
+
+.none {
+    margin: 0;
+    padding: 0;
+}
+
+.col--logo {
+    flex-grow: 0;
+    margin-bottom: 5px;
+}
+
+.col--chores {
+    flex-basis: 100%;
+    padding: 0;
+    margin: 0;
+}
 
 .col--login {
     flex-basis: 100%;
@@ -48,24 +82,33 @@
 
 // Logo
 .logo {
-    display: block;
     margin: 0 auto;
     max-width: 300px;
     max-height: 300px;
     padding-right: 40px;
 }
 
+.logo--sm {
+    display: inline-flex;
+    margin: 0;
+    width: 70px;
+    height: 70px;
+}
+
 // Header
 
 .header {
+    display: inline-flex;
+    align-self: center;
     background-color: rgb(138, 43, 226);
     color: white;
-    font-size: 2.5rem;
+    font-size: 2.0rem;
 }
 
 // Colors
 
 .fontAwesomeIcon {
+    display: inline-flex;
     color: blueviolet;
 }
 
@@ -88,8 +131,8 @@ a:hover {
 .endRow {
     background-color: rgb(248, 248, 248);
     width: 100%;
-    position: fixed;
-    bottom: 0;
+    margin: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.308);
 }
 
 .vl {
@@ -103,9 +146,3 @@ a:hover {
 
 // Breakpoints
 
-@media only screen and (min-width : 700px) {
-    .endRow {
-        background-color: rgb(248, 248, 248);
-        width: 700px;
-    }
-}

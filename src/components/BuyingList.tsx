@@ -11,6 +11,7 @@ import 'firebase/auth';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Button, Form, Alert } from 'react-bootstrap';
 import '../style.scss';
+import logo from '../img/logo.png';
 
 
 //Redux
@@ -264,14 +265,21 @@ export class BuyingList extends React.Component<Props, State> {
   render() {
     return (
       <div>
-        <Container className='container container--main text-center'>
-          <Row>
-              <Col className='px-0 mb-4'>
-                  <h1 className="display-4 py-4 header">Todo list:</h1>
+        <Container className='container container--main'>
+          <Row className='row--nav'>
+              <Col className='col--chores'>
+                  <Row className='row--nav'>
+                      <Col className='px-0 mx-1 col--logo'>
+                          <img src={logo} alt='logo' className='logo--sm' />
+                      </Col>
+                      <Col className='px-0 align-self-center ml-3'>
+                          <h1 className="display-4 header">Todo list</h1>
+                      </Col>
+                  </Row>
               </Col>
           </Row>
 
-          <Container className='container--list'> 
+          <Container fluid={true} className='container--list'> 
                   {/* Disabling users from clicking on the buttons, depending on their Internet connection*/}
 
                   <Offline>

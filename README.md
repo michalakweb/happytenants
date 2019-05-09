@@ -15,8 +15,13 @@ Currently, all users are allowed to make changes into the firebase and the chore
 
 ## Future Releases 
 
+* 0.3.7
+    * registration tips
+    * styling overhaul for chores and buying list
+    * Regex for 'missing colon' bug when joining a list
+    * settings button to log out
 * 0.4
-    * refactor code - further separate logic from presentation + template components
+    * refactor code - further separate logic from presentation
 * 0.5
     * chores can be now set by the group
     * other languages 

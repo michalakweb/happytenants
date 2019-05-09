@@ -19,7 +19,7 @@ export const BuyingListItem: React.FunctionComponent<Props> = (props) => (
             <Col xs={4} lg={2} className='text-right'>
                 <Button 
                 disabled={props.isOnline === false}
-                variant="outline-primary" className='button--deleteOption' onClick={() => {
+                variant="outline-primary" className='button--deleteOption mr-1' onClick={() => {
                     props.dispatch(startRemoveItemAction({id : props.item.id}));
                 }}>Delete</Button>
             </Col>
