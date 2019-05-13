@@ -21,8 +21,9 @@ const LoginPage = () => (
                     <h1 className='text-center container--login_h1'>Happy Tenants</h1>
                 </Col>
 
-                <Col className='align-self-end col--login mb-4'>
+                <Col className='align-self-end col--login'>
                     <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
+                    <p className='mb-0 loginMsg'>If there's an error, then use the first option.</p>
                 </Col>
             </Row>
         </Container>
