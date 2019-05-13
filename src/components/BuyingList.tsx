@@ -285,7 +285,7 @@ export class BuyingList extends React.Component<Props, State> {
                   <Offline>
                   {!this.props.state.length ? 
 
-                  <p className='lead py-4 px-2 mb-0'>Currently nothing on the list</p> :
+                  <p className='lead p-4'><strong>Currently nothing on the list</strong></p> :
 
                   this.props.state.map((item: {
                     id?: number;
@@ -293,7 +293,8 @@ export class BuyingList extends React.Component<Props, State> {
                   }) => <ReduxedBuyingListItem isOnline={false} key={item.id} item={item}/>)}
                   </Offline>
                   <Online>
-                  {!this.props.state.length ? <p className='lead py-4 mb-0'>Currently nothing on the list</p> :
+                  {!this.props.state.length ? 
+                  <p className='lead p-4 mb-0'><strong>Currently nothing on the list</strong></p> :
                   this.props.state.map((item: {
                     id?: number;
                     description?: string;
@@ -318,9 +319,11 @@ export class BuyingList extends React.Component<Props, State> {
                         
                         {this.state.listAddressVisible && (
                             <Col className='col--todoForm'>
-                              <Alert className='mt-2' variant='warning'>{this.state.listAddress}</Alert>
-                              <p className='px-2'>Copy this address and send it to your friend/family.</p>
-                              <p className='px-2'>When they login, they can join your list!</p>
+                              <Alert className='mt-2 mb-0 text-center' variant='warning'>{this.state.listAddress}</Alert>
+                              <Alert className='mb-0' variant='secondary'>
+                                Copy the addres above and send it to your friend/family.
+                                When they login, they can join your list!
+                              </Alert>
                             </Col>
                         ) }
                         </Row>
@@ -361,9 +364,12 @@ export class BuyingList extends React.Component<Props, State> {
                   {/* Error handling */}
                   {
                     this.state.error.length !== 0 && 
-                    <Alert className='my-1' variant='warning'>
-                      {this.state.error}
-                    </Alert>
+                    <Col className='col--chores'>
+                      <Alert className='my-0 text-center' variant='info'>
+                        <FontAwesomeIcon className='fontAwesomeIcon' icon="spinner" spin />
+                        <p className='m-0 p-0 pl-1 d-inline-flex'>{this.state.error}</p>
+                      </Alert>
+                    </Col>
                   }
 
                   {
