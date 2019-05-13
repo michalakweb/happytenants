@@ -16,22 +16,21 @@ Currently, all users are allowed to make changes into the firebase and the chore
 ## Future Releases 
 
 * 0.3.7 beta
+    * modularize CSS
     * split existing components into smaller chunks
-    * registration tips
     * Regex for 'missing colon' bug when joining a list
     * settings button to log out
-    * modularize CSS
-    * fix offline bugs
+    * fix offline bugs and wrap offline functionality in a simpler way than it is now
 * 0.4
-    * refactor code - further separate logic from presentation
-* 0.5
     * chores can be now set by the group
+* 0.5
+    * refactor code - further separate logic from presentation
     * other languages 
 * 0.6 
     * type-checking in all files
     * more complex testing
 * 0.7
-    * UI tips for new users
+    * UI tips for new users + Modal 
 * 0.8
     * push notifications
 
@@ -42,6 +41,7 @@ Currently, all users are allowed to make changes into the firebase and the chore
 
 ## Release History
 * 0.3.6 beta
+    * registration tips
     * styling overhaul for chores and buying list
     * improved styling for Login Page
     * fonts in css
