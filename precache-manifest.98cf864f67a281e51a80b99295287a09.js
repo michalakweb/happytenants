@@ -1,23 +1,23 @@
 self.__precacheManifest = [
   {
-    "revision": "645ef98a98a47f851a24",
-    "url": "/happytenants/static/css/main.c7e94b21.chunk.css"
+    "revision": "208889d842c5e246ba9c",
+    "url": "/happytenants/static/css/main.881c6cbd.chunk.css"
   },
   {
-    "revision": "645ef98a98a47f851a24",
-    "url": "/happytenants/static/js/main.a9a404d4.chunk.js"
+    "revision": "208889d842c5e246ba9c",
+    "url": "/happytenants/static/js/main.5a5b95d2.chunk.js"
   },
   {
     "revision": "4d23210ed51cc219c445",
     "url": "/happytenants/static/js/runtime~main.3c5682d9.js"
   },
   {
-    "revision": "bc6ca3a50785a2962d3a",
+    "revision": "893b989f4d9345a881d8",
     "url": "/happytenants/static/css/2.4397b3cc.chunk.css"
   },
   {
-    "revision": "bc6ca3a50785a2962d3a",
-    "url": "/happytenants/static/js/2.ac3bf89b.chunk.js"
+    "revision": "893b989f4d9345a881d8",
+    "url": "/happytenants/static/js/2.a11aa503.chunk.js"
   },
   {
     "revision": "765ab13157a52c158d4f3cbc29455ba5",
@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/happytenants/static/media/doodles.d0aa956a.png"
   },
   {
-    "revision": "0005620324cce76a50bb8885499d9bc8",
+    "revision": "fa2bf21bde30feb70be323ffc93abbc1",
     "url": "/happytenants/index.html"
   }
 ];
